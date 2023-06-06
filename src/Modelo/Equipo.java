@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class Equipo {
 
-    private int idProyecto;
+    private Proyecto proyecto;
     private int idEquipo;
     private String nombre;
     private LocalDate fechaCreacion;
@@ -23,20 +23,20 @@ public class Equipo {
 
     }
 
-    public Equipo(int idProyecto, int idEquipo, String nombre, LocalDate fechaCreacion, int estado) {
-        this.idProyecto = idProyecto;
+    public Equipo(Proyecto proyecto, int idEquipo, String nombre, LocalDate fechaCreacion, int estado) {
+        this.proyecto = proyecto;
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
 
-    public int getIdProyecto() {
-        return idProyecto;
+    public Proyecto getProyecto() {
+        return proyecto;
     }
 
-    public void setIdProyecto(int idProyecto) {
-        this.idProyecto = idProyecto;
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
 
     public int getIdEquipo() {
@@ -73,7 +73,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo{" + "idProyecto=" + idProyecto + ", idEquipo=" + idEquipo + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", estado=" + estado + '}';
+        return "Equipo{" + "proyecto=" + proyecto + ", idEquipo=" + idEquipo + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", estado=" + estado + '}';
     }
 
 }

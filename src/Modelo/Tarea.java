@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Tarea {
 
     private int idTarea;
-    private int idMiembroEq;
+    private EquipoMiembros equipomiembros;
     private String nombre;
     private LocalDate fechaCreacion;
     private LocalDate fechaCierre;
@@ -24,9 +24,9 @@ public class Tarea {
 
     }
 
-    public Tarea(int idTarea, int idMiembroEq, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, int estado) {
+    public Tarea(int idTarea, EquipoMiembros equipomiembros, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, int estado) {
         this.idTarea = idTarea;
-        this.idMiembroEq = idMiembroEq;
+        this.equipomiembros = equipomiembros;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.fechaCierre = fechaCierre;
@@ -41,12 +41,12 @@ public class Tarea {
         this.idTarea = idTarea;
     }
 
-    public int getIdMiembroEq() {
-        return idMiembroEq;
+    public EquipoMiembros getEquipomiembros() {
+        return equipomiembros;
     }
 
-    public void setIdMiembroEq(int idMiembroEq) {
-        this.idMiembroEq = idMiembroEq;
+    public void setEquipomiembros(EquipoMiembros equipomiembros) {
+        this.equipomiembros = equipomiembros;
     }
 
     public String getNombre() {
@@ -83,7 +83,7 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return "Tarea{" + "idTarea=" + idTarea + ", idMiembroEq=" + idMiembroEq + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", fechaCierre=" + fechaCierre + ", estado=" + estado + '}';
+        return "Tarea{" + "idTarea=" + idTarea + ", equipomiembros=" + equipomiembros + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", fechaCierre=" + fechaCierre + ", estado=" + estado + '}';
     }
 
 }
