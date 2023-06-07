@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2023 a las 00:03:08
+-- Tiempo de generación: 07-06-2023 a las 02:48:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -115,22 +115,22 @@ CREATE TABLE `tarea` (
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`idComentario`),
-  ADD UNIQUE KEY `idTarea` (`idTarea`);
+  ADD KEY `idTarea` (`idTarea`);
 
 --
 -- Indices de la tabla `equipo`
 --
 ALTER TABLE `equipo`
   ADD PRIMARY KEY (`idEquipo`),
-  ADD UNIQUE KEY `idProyecto` (`idProyecto`);
+  ADD KEY `idProyecto` (`idProyecto`);
 
 --
 -- Indices de la tabla `equipomiembros`
 --
 ALTER TABLE `equipomiembros`
   ADD PRIMARY KEY (`idMiembroEq`),
-  ADD UNIQUE KEY `idEquipo` (`idEquipo`),
-  ADD UNIQUE KEY `idMiembro` (`idMiembro`);
+  ADD KEY `idEquipo` (`idEquipo`),
+  ADD KEY `idMiembro` (`idMiembro`);
 
 --
 -- Indices de la tabla `miembro`
@@ -150,7 +150,7 @@ ALTER TABLE `proyecto`
 --
 ALTER TABLE `tarea`
   ADD PRIMARY KEY (`idTarea`),
-  ADD UNIQUE KEY `idMiembroEq` (`idMiembroEq`);
+  ADD KEY `idMiembroEq` (`idMiembroEq`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -184,7 +184,7 @@ ALTER TABLE `miembro`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `idProyecto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea`
@@ -197,34 +197,29 @@ ALTER TABLE `tarea`
 --
 
 --
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`idTarea`) REFERENCES `tarea` (`idTarea`);
+
+--
 -- Filtros para la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`idEquipo`) REFERENCES `equipomiembros` (`idEquipo`);
+  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`idProyecto`) REFERENCES `proyecto` (`idProyecto`);
 
 --
 -- Filtros para la tabla `equipomiembros`
 --
 ALTER TABLE `equipomiembros`
-  ADD CONSTRAINT `equipomiembros_ibfk_1` FOREIGN KEY (`idMiembroEq`) REFERENCES `tarea` (`idMiembroEq`);
-
---
--- Filtros para la tabla `miembro`
---
-ALTER TABLE `miembro`
-  ADD CONSTRAINT `miembro_ibfk_1` FOREIGN KEY (`idMiembro`) REFERENCES `equipomiembros` (`idMiembro`);
-
---
--- Filtros para la tabla `proyecto`
---
-ALTER TABLE `proyecto`
-  ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`idProyecto`) REFERENCES `equipo` (`idProyecto`);
+  ADD CONSTRAINT `equipomiembros_ibfk_1` FOREIGN KEY (`idMiembro`) REFERENCES `miembro` (`idMiembro`),
+  ADD CONSTRAINT `equipomiembros_ibfk_2` FOREIGN KEY (`idEquipo`) REFERENCES `equipo` (`idEquipo`);
 
 --
 -- Filtros para la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`idTarea`) REFERENCES `comentarios` (`idTarea`);
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`idMiembroEq`) REFERENCES `equipomiembros` (`idMiembroEq`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
