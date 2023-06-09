@@ -22,41 +22,15 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataTarea {
-    
-    
+
     private Connection con = null;
     private DataMiembro dataMiembro = new DataMiembro();
+
     public DataTarea() {
         con = Conexion.getConnection();
     }
-    
-    public List<Tarea> consultarTareas() {
 
-        List<Tarea> tareas = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM tarea WHERE estado = 1";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Tarea tarea = new Tarea();
-
-                tarea.setNombre(rs.getString("nombre"));
-                tarea.setFechaCreacion(rs.getDate("fechaInicio").toLocalDate());
-                tarea.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
-                tarea.setEstado(rs.getInt("estado"));
-                int idMiembro = rs.getInt("idMiembro");
-                
-                tareas.add(tarea);
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            // mensajito de error en vista
-        }
-        return tareas;
-    }
-    
-    public void guardarTarea(Tarea tarea){
+    public void guardarTarea(Tarea tarea) {
         String sql = "INSERT INTO tarea (nombre, fechaCreacion, fechaCierre, estado, idMiembroEq) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -78,29 +52,50 @@ public class DataTarea {
         }
 
     }
-    
+
+    public List<Tarea> consultarTareas() {
+
+        List<Tarea> tareas = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tarea WHERE estado = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Tarea tarea = new Tarea();
+
+                tarea.setNombre(rs.getString("nombre"));
+                tarea.setFechaCreacion(rs.getDate("fechaInicio").toLocalDate());
+                tarea.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                tarea.setEstado(rs.getInt("estado"));
+                int idMiembro = rs.getInt("idMiembro");
+
+                tareas.add(tarea);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
+        }
+        return tareas;
+    }
+
     public void modificarTarea(int idTarea, int newEstado) {
 
         String sql = "UPDATE tarea SET estado = ? WHERE  idTarea = ?";
-        PreparedStatement ps;
-
         try {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, newEstado);
             ps.setInt(2, idTarea);
             int exito = ps.executeUpdate();
-
             if (exito == 1) {
-                // Cartelito de SE MODIFICO CORRECTAMENTE
+                JOptionPane.showMessageDialog(null, "Se modifico correctamente el estado.");
             } else {
-                // Cartelito de EL CLIENTE NO EXISTE
+
             }
-
         } catch (SQLException ex) {
-            // Cartelito de ERROR
-     }
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
+        }
 
-    } 
-    
-    
+    }
+
 }

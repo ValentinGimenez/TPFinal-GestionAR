@@ -22,13 +22,14 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataProyecto {
-    
+
     private Connection con = null;
+
     public DataProyecto() {
         con = Conexion.getConnection();
     }
-    
-    public void guardarProyecto(Proyecto proyecto){
+
+    public void guardarProyecto(Proyecto proyecto) {
         String sql = "INSERT INTO proyecto (nombre, descripcion, fechaInicio, estado) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -49,8 +50,8 @@ public class DataProyecto {
         }
 
     }
-    
-     public List<Proyecto> consultarProyectos() {
+
+    public List<Proyecto> consultarProyectos() {
 
         List<Proyecto> proyectos = new ArrayList<>();
         try {
@@ -69,16 +70,16 @@ public class DataProyecto {
             ps.close();
 
         } catch (SQLException ex) {
-            // mensajito de error en vista
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proyecto" + ex.getMessage());
         }
         return proyectos;
     }
-    
-     public Proyecto buscarProyecto(int id){
+
+    public Proyecto buscarProyecto(int id) {
         Proyecto proyecto = new Proyecto();
         String sql = "SELECT * FROM proyecto WHERE idProyecto = ?";
         PreparedStatement ps = null;
-        try{
+        try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -87,16 +88,16 @@ public class DataProyecto {
                 proyecto.setDescripcion(rs.getString("direccion"));
                 proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 proyecto.setEstado(rs.getInt("estado"));
-                
-            }else{
-                //en vistas, cartelito que diga "no se pudo buscar el producto" o "no existe el producto"
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro el proyecto.");
             }
             ps.close();
-            
-        }catch(SQLException ex){
-            //cartelito "error en buscar producto"
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proyecto" + ex.getMessage());
         }
-        return proyecto ;
+        return proyecto;
     }
-    
+
 }

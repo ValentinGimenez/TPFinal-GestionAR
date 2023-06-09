@@ -21,14 +21,15 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataEquipo {
-    
+
     private Connection con = null;
     private DataProyecto dataProyecto = new DataProyecto();
+
     public DataEquipo() {
         con = Conexion.getConnection();
     }
-    
-    public void guardarEquipo(Equipo equipo){
+
+    public void guardarEquipo(Equipo equipo) {
         String sql = "INSERT INTO equipo (idProyecto, nombre, fechaCreacion, estado) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -40,7 +41,7 @@ public class DataEquipo {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 equipo.setIdEquipo(rs.getInt("idEquipo"));
-                JOptionPane.showMessageDialog(null, "Proyecto añadido con exito.");
+                JOptionPane.showMessageDialog(null, "Equipo añadido con exito.");
             }
             ps.close();
 
@@ -49,12 +50,12 @@ public class DataEquipo {
         }
 
     }
-    
-    public Equipo buscarEquipo(int id){
+
+    public Equipo buscarEquipo(int id) {
         Equipo equipo = new Equipo();
         String sql = "SELECT * FROM equipo WHERE idEquipo = ?";
         PreparedStatement ps = null;
-        try{
+        try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -63,16 +64,15 @@ public class DataEquipo {
                 equipo.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
                 equipo.setNombre(rs.getString("nombre"));
                 equipo.setEstado(rs.getInt("estado"));
-                
-                
-            }else{
-                //en vistas, cartelito que diga "no se pudo buscar el producto" o "no existe el producto"
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro Equipo con el id solicitado.");
             }
             ps.close();
-            
-        }catch(SQLException ex){
-            //cartelito "error en buscar producto"
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
         }
-        return equipo ;
+        return equipo;
     }
 }

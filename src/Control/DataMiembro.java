@@ -20,39 +20,14 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataMiembro {
-    
+
     private Connection con = null;
+
     public DataMiembro() {
         con = Conexion.getConnection();
     }
-    
-    public Miembro buscarMiembro(int id){
-        Miembro miembro = new Miembro();
-        String sql = "SELECT * FROM miembro WHERE idMiembro = ?";
-        PreparedStatement ps = null;
-        try{
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                miembro.setDni(rs.getInt("dni"));
-                miembro.setApellido(rs.getString("apellido"));
-                miembro.setNombre(rs.getString("nombre"));
-                miembro.setEstado(rs.getInt("estado"));
-                
-                
-            }else{
-                //en vistas, cartelito que diga "no se pudo buscar el producto" o "no existe el producto"
-            }
-            ps.close();
-            
-        }catch(SQLException ex){
-            //cartelito "error en buscar producto"
-        }
-        return miembro ;
-    }
-    
-    public void guardarMiembro(Miembro miembro){
+
+    public void guardarMiembro(Miembro miembro) {
         String sql = "INSERT INTO miembro (dni, apellido, nombre, estado) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -73,4 +48,30 @@ public class DataMiembro {
         }
 
     }
+
+    public Miembro buscarMiembro(int id) {
+        Miembro miembro = new Miembro();
+        String sql = "SELECT * FROM miembro WHERE idMiembro = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                miembro.setDni(rs.getInt("dni"));
+                miembro.setApellido(rs.getString("apellido"));
+                miembro.setNombre(rs.getString("nombre"));
+                miembro.setEstado(rs.getInt("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro un miembro con el id solicitado.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
+        }
+        return miembro;
+    }
+
 }

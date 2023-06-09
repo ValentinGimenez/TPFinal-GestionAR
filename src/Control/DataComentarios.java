@@ -20,13 +20,14 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataComentarios {
+
     private Connection con = null;
-    
+
     public DataComentarios() {
         con = Conexion.getConnection();
     }
-    
-    public void guardarComentario(Comentarios comentarios){
+
+    public void guardarComentario(Comentarios comentarios) {
         String sql = "INSERT INTO comentarios (comentario, fechaAvance, idTarea) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

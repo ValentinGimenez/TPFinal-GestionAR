@@ -23,40 +23,17 @@ import javax.swing.JOptionPane;
  * @author Valentin
  */
 public class DataEquipoMiembros {
-    
+
     private Connection con;
     private DataMiembro dataMiembro = new DataMiembro();
     private DataProyecto dataProyecto = new DataProyecto();
     private DataEquipo dataEquipo = new DataEquipo();
-    
+
     public DataEquipoMiembros() {
         con = Conexion.getConnection();
     }
-    
-    public EquipoMiembros buscarEquipoMiembros(int id){
-        EquipoMiembros equipoMiembros = new EquipoMiembros();
-        String sql = "SELECT * FROM equipoMiembros WHERE idEquipoMiembros = ?";
-        PreparedStatement ps = null;
-        try{
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                equipoMiembros.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
-                equipoMiembros.setMiembro(dataMiembro.buscarMiembro(rs.getInt("miembro")));
-                equipoMiembros.setEquipo(dataEquipo.buscarEquipo(rs.getInt("equipo")));
-            }else{
-                //en vistas, cartelito que diga "no se pudo buscar el producto" o "no existe el producto"
-            }
-            ps.close();
-            
-        }catch(SQLException ex){
-            //cartelito "error en buscar producto"
-        }
-        return equipoMiembros ;
-    }
-    
-    public void guardarEquipoMiembros(EquipoMiembros equipoMiembros){
+
+    public void guardarEquipoMiembros(EquipoMiembros equipoMiembros) {
         String sql = "INSERT INTO equipoMiembros (fechaIncorporacion, idEquipo, idMiembro) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -76,7 +53,30 @@ public class DataEquipoMiembros {
         }
 
     }
-    
+
+    public EquipoMiembros buscarEquipoMiembros(int id) {
+        EquipoMiembros equipoMiembros = new EquipoMiembros();
+        String sql = "SELECT * FROM equipoMiembros WHERE idEquipoMiembros = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                equipoMiembros.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
+                equipoMiembros.setMiembro(dataMiembro.buscarMiembro(rs.getInt("miembro")));
+                equipoMiembros.setEquipo(dataEquipo.buscarEquipo(rs.getInt("equipo")));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro un EquipoMiembro con el id solicitado.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
+        }
+        return equipoMiembros;
+    }
+
     public List<Miembro> consultarMiembrosPorIdEquipo(int idEquipo) {
 
         List<Miembro> miembros = new ArrayList<>();
@@ -96,7 +96,7 @@ public class DataEquipoMiembros {
             ps.close();
 
         } catch (SQLException ex) {
-            // mensajito de error en vista
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
         }
         return miembros;
     }
