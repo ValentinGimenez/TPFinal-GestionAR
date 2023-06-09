@@ -7,10 +7,16 @@ package Control;
 
 import Modelo.EquipoMiembros;
 import Modelo.Miembro;
+import Modelo.Proyecto;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,4 +56,48 @@ public class DataEquipoMiembros {
         return equipoMiembros ;
     }
     
+    public void guardarEquipoMiembros(EquipoMiembros equipoMiembros){
+        String sql = "INSERT INTO equipoMiembros (fechaIncorporacion, idEquipo, idMiembro) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDate(1, Date.valueOf(equipoMiembros.getFechaIncorporacion()));
+            ps.setInt(2, equipoMiembros.getEquipo().getIdEquipo());
+            ps.setInt(3, equipoMiembros.getMiembro().getIdMiembro());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                equipoMiembros.setIdMiembroEq(rs.getInt("idMiembroEq"));
+                JOptionPane.showMessageDialog(null, "EquipoMiembro añadido con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
+        }
+
+    }
+    
+    public List<Miembro> consultarMiembrosPorIdEquipo(int idEquipo) {
+
+        List<Miembro> miembros = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM miembro M JOIN equipomiembros EM ON M.idMiembro = EM.idMiembro WHERE EM.idEquipo = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEquipo);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Miembro miembro = new Miembro();
+                miembro.setNombre(rs.getString("nombre"));
+                miembro.setApellido(rs.getString("apellido"));
+                miembro.setDni(rs.getInt("dni"));
+                miembro.setEstado(rs.getInt("estado"));
+                miembros.add(miembro);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            // mensajito de error en vista
+        }
+        return miembros;
+    }
 }

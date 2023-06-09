@@ -7,10 +7,14 @@ package Control;
 
 import Modelo.Equipo;
 import Modelo.Miembro;
+import Modelo.Proyecto;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,28 @@ public class DataEquipo {
     private DataProyecto dataProyecto = new DataProyecto();
     public DataEquipo() {
         con = Conexion.getConnection();
+    }
+    
+    public void guardarEquipo(Equipo equipo){
+        String sql = "INSERT INTO equipo (idProyecto, nombre, fechaCreacion, estado) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, equipo.getProyecto().getIdProyecto());
+            ps.setString(2, equipo.getNombre());
+            ps.setDate(3, Date.valueOf(equipo.getFechaCreacion()));
+            ps.setInt(4, equipo.getEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                equipo.setIdEquipo(rs.getInt("idEquipo"));
+                JOptionPane.showMessageDialog(null, "Proyecto añadido con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
+        }
+
     }
     
     public Equipo buscarEquipo(int id){

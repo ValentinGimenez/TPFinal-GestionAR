@@ -6,10 +6,14 @@
 package Control;
 
 import Modelo.Miembro;
+import Modelo.Proyecto;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,4 +52,25 @@ public class DataMiembro {
         return miembro ;
     }
     
+    public void guardarMiembro(Miembro miembro){
+        String sql = "INSERT INTO miembro (dni, apellido, nombre, estado) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, miembro.getDni());
+            ps.setString(2, miembro.getApellido());
+            ps.setString(3, miembro.getNombre());
+            ps.setInt(4, miembro.getEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                miembro.setIdMiembro(rs.getInt("idMiembro"));
+                JOptionPane.showMessageDialog(null, "Miembro añadido con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
+        }
+
+    }
 }

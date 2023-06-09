@@ -29,6 +29,12 @@ public class Comentarios {
         this.fechaAvance = fechaAvance;
     }
 
+    public Comentarios(Tarea Tarea, String comentario, LocalDate fechaAvance) {
+        this.Tarea = Tarea;
+        this.comentario = comentario;
+        this.fechaAvance = fechaAvance;
+    }
+
     public int getIdComentario() {
         return idComentario;
     }

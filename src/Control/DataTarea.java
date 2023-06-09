@@ -57,7 +57,7 @@ public class DataTarea {
     }
     
     public void guardarTarea(Tarea tarea){
-        String sql = "INSERT INTO tarea (nombre, fechaCreacion, fechaCierre, estado, idMiembroEq) VALUES (?, ?, ?, ?. ?)";
+        String sql = "INSERT INTO tarea (nombre, fechaCreacion, fechaCierre, estado, idMiembroEq) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, tarea.getNombre());
@@ -78,4 +78,29 @@ public class DataTarea {
         }
 
     }
+    
+    public void modificarTarea(int idTarea, int newEstado) {
+
+        String sql = "UPDATE tarea SET estado = ? WHERE  idTarea = ?";
+        PreparedStatement ps;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, newEstado);
+            ps.setInt(2, idTarea);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                // Cartelito de SE MODIFICO CORRECTAMENTE
+            } else {
+                // Cartelito de EL CLIENTE NO EXISTE
+            }
+
+        } catch (SQLException ex) {
+            // Cartelito de ERROR
+     }
+
+    } 
+    
+    
 }
