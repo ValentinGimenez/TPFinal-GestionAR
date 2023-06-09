@@ -33,6 +33,15 @@ public class Tarea {
         this.estado = estado;
     }
 
+    public Tarea(EquipoMiembros equipomiembros, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, int estado) {
+        this.equipomiembros = equipomiembros;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+    }
+    
+
     public int getIdTarea() {
         return idTarea;
     }

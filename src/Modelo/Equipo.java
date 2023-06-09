@@ -31,6 +31,15 @@ public class Equipo {
         this.estado = estado;
     }
 
+    public Equipo(Proyecto proyecto, String nombre, LocalDate fechaCreacion, int estado) {
+        this.proyecto = proyecto;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+    }
+    
+    
+
     public Proyecto getProyecto() {
         return proyecto;
     }

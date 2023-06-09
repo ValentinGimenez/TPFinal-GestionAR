@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Modelo.Miembro;
 import Modelo.Proyecto;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,5 +50,53 @@ public class DataProyecto {
 
     }
     
+     public List<Proyecto> consultarProyectos() {
+
+        List<Proyecto> proyectos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM proyecto WHERE estado = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Proyecto proyecto = new Proyecto();
+
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setDescripcion(rs.getString("descripcion"));
+                proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                proyecto.setEstado(rs.getInt("estado"));
+                proyectos.add(proyecto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            // mensajito de error en vista
+        }
+        return proyectos;
+    }
+    
+     public Proyecto buscarProyecto(int id){
+        Proyecto proyecto = new Proyecto();
+        String sql = "SELECT * FROM proyecto WHERE idProyecto = ?";
+        PreparedStatement ps = null;
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setDescripcion(rs.getString("direccion"));
+                proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                proyecto.setEstado(rs.getInt("estado"));
+                
+            }else{
+                //en vistas, cartelito que diga "no se pudo buscar el producto" o "no existe el producto"
+            }
+            ps.close();
+            
+        }catch(SQLException ex){
+            //cartelito "error en buscar producto"
+        }
+        return proyecto ;
+    }
     
 }

@@ -29,6 +29,15 @@ public class Miembro {
         this.estado = estado;
     }
 
+    public Miembro(int dni, String apellido, String nombre, int estado) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+    
+    
+
     public int getIdMiembro() {
         return idMiembro;
     }

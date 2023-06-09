@@ -29,6 +29,14 @@ public class EquipoMiembros {
         this.fechaIncorporacion = fechaIncorporacion;
     }
 
+    public EquipoMiembros(Equipo equipo, Miembro miembro, LocalDate fechaIncorporacion) {
+        this.equipo = equipo;
+        this.miembro = miembro;
+        this.fechaIncorporacion = fechaIncorporacion;
+    }
+    
+    
+
     public int getIdMiembroEq() {
         return idMiembroEq;
     }
