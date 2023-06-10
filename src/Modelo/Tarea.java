@@ -40,7 +40,6 @@ public class Tarea {
         this.fechaCierre = fechaCierre;
         this.estado = estado;
     }
-    
 
     public int getIdTarea() {
         return idTarea;

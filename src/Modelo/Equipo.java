@@ -37,8 +37,6 @@ public class Equipo {
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
-    
-    
 
     public Proyecto getProyecto() {
         return proyecto;

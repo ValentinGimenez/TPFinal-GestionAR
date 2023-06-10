@@ -35,8 +35,6 @@ public class Miembro {
         this.nombre = nombre;
         this.estado = estado;
     }
-    
-    
 
     public int getIdMiembro() {
         return idMiembro;

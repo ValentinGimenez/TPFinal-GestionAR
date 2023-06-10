@@ -34,8 +34,6 @@ public class EquipoMiembros {
         this.miembro = miembro;
         this.fechaIncorporacion = fechaIncorporacion;
     }
-    
-    
 
     public int getIdMiembroEq() {
         return idMiembroEq;
