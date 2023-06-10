@@ -100,4 +100,39 @@ public class DataProyecto {
         return proyecto;
     }
 
+    public void eliminarProyecto(int id) {
+
+        try {
+            String sql = "UPDATE proyecto SET estado = 0 WHERE idProyecto = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó el proyecto.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Proyecto");
+        }
+    }
+
+    public void activarProyecto(int id) {
+
+        try {
+            String sql = "UPDATE proyecto SET estado = 1 WHERE idProyecto = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            ps.close();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se activo el proyecto.");
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Proyecto");
+        }
+    }
+
 }

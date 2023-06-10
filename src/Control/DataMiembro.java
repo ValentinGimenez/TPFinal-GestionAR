@@ -73,5 +73,29 @@ public class DataMiembro {
         }
         return miembro;
     }
+    public Miembro buscarMiembroPorDNI(int dni) {
+        Miembro miembro = new Miembro();
+        String sql = "SELECT * FROM miembro WHERE dni = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                miembro.setIdMiembro(rs.getInt("idMiembro"));
+                miembro.setDni(rs.getInt("dni"));
+                miembro.setApellido(rs.getString("apellido"));
+                miembro.setNombre(rs.getString("nombre"));
+                miembro.setEstado(rs.getInt("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro un miembro con el dni solicitado.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
+        }
+        return miembro;
+    }
 
 }
