@@ -49,7 +49,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         jmCrearProyecto = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmConsultarProyecto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmCrearEquipo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -85,13 +85,13 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu6.add(jmCrearProyecto);
 
-        jMenuItem1.setText("Consultar Proyecto");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmConsultarProyecto.setText("Consultar Proyecto");
+        jmConsultarProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmConsultarProyectoActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem1);
+        jMenu6.add(jmConsultarProyecto);
 
         jMenuBar2.add(jMenu6);
 
@@ -165,9 +165,13 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmConsultarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarProyectoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ConsultarProyectosView cpsv = new ConsultarProyectosView();
+        centrar(cpsv);
+    }//GEN-LAST:event_jmConsultarProyectoActionPerformed
 
     private void jmCrearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearEquipoActionPerformed
         // TODO add your handling code here:
@@ -227,10 +231,10 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jmConsultarProyecto;
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;
     private javax.swing.JMenuItem jmCrearProyecto;
