@@ -50,6 +50,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jmCrearProyecto = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jmCrearEquipo = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -91,6 +93,18 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu6);
 
+        jMenu1.setText("Equipo");
+
+        jmCrearEquipo.setText("Crear Equipo");
+        jmCrearEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCrearEquipoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmCrearEquipo);
+
+        jMenuBar2.add(jMenu1);
+
         jMenu7.setText("Tarea");
 
         jMenuItem2.setText("Crear Tarea");
@@ -129,8 +143,8 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        ProyectoView pv = new ProyectoView();
-        centrar(pv);
+        CrearProyectoView cpv = new CrearProyectoView();
+        centrar(cpv);
     }//GEN-LAST:event_jmCrearProyectoActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -140,6 +154,14 @@ public class MenuView extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jmCrearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearEquipoActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        CrearEquipo ce = new CrearEquipo();
+        centrar(ce);
+    }//GEN-LAST:event_jmCrearEquipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +200,7 @@ public class MenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar2;
@@ -185,6 +208,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearProyecto;
     // End of variables declaration//GEN-END:variables
 }

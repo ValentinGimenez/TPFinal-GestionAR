@@ -65,6 +65,7 @@ public class DataProyecto {
                 proyecto.setDescripcion(rs.getString("descripcion"));
                 proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 proyecto.setEstado(rs.getInt("estado"));
+                proyecto.setIdProyecto(rs.getInt("idProyecto"));
                 proyectos.add(proyecto);
             }
             ps.close();
@@ -88,6 +89,7 @@ public class DataProyecto {
                 proyecto.setDescripcion(rs.getString("direccion"));
                 proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 proyecto.setEstado(rs.getInt("estado"));
+                proyecto.setIdProyecto(rs.getInt("idProyecto"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el proyecto.");

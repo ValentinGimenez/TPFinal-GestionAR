@@ -5,26 +5,21 @@
  */
 package Vistas;
 
-import Control.DataProyecto;
-import Modelo.Proyecto;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import Control.DataMiembro;
+import Modelo.Miembro;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Valentin
  */
-public class ProyectoView extends javax.swing.JInternalFrame {
+public class CrearMiembros extends javax.swing.JInternalFrame {
 
-    DataProyecto dataproyecto = new DataProyecto();
-    Proyecto proyecto = null;
+    DataMiembro datamiembro = new DataMiembro();
+    Miembro miembro = null;
 
-    /**
-     * Creates new form ProyectoView
-     */
-    public ProyectoView() {
+
+    public CrearMiembros() {
         initComponents();
     }
 
@@ -43,16 +38,16 @@ public class ProyectoView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jtDescripcion = new javax.swing.JTextField();
+        jtApellido = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jdcFechaInicio = new com.toedter.calendar.JDateChooser();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jtDni = new javax.swing.JTextField();
 
-        setTitle("Crear Proyecto");
+        setTitle("Crear Miembro");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -61,7 +56,7 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("Crear Proyecto");
+        jLabel1.setText("Crear Miembro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,19 +88,19 @@ public class ProyectoView extends javax.swing.JInternalFrame {
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jtDescripcion.setBackground(new java.awt.Color(240, 240, 240));
-        jtDescripcion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtDescripcion.setBorder(null);
+        jtApellido.setBackground(new java.awt.Color(240, 240, 240));
+        jtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtApellido.setBorder(null);
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel3.setText("Descripcion");
+        jLabel3.setText("Apellido");
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel4.setText("Fecha de inicio");
+        jLabel4.setText("DNI");
 
         jbGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbGuardar.setText("GUARDAR");
@@ -123,6 +118,10 @@ public class ProyectoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jtDni.setBackground(new java.awt.Color(240, 240, 240));
+        jtDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtDni.setBorder(null);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,29 +132,29 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(88, 88, 88))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(110, 110, 110)
                                     .addComponent(jLabel2)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(74, 74, 74))
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(204, 204, 204))))
+                        .addGap(204, 204, 204))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(241, 241, 241))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(217, 217, 217))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,13 +169,13 @@ public class ProyectoView extends javax.swing.JInternalFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(67, 67, 67)
                 .addComponent(jLabel4)
-                .addGap(19, 19, 19)
-                .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
@@ -192,21 +191,20 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
         String nombre = jtNombre.getText();
-        String descripcion = jtDescripcion.getText();
-        Date date = jdcFechaInicio.getDate();
+        String apellido = jtApellido.getText();
+        Integer dni = Integer.valueOf(jtDni.getText());
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
             return;
-        } else if (descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El campo descripcion se encuentra vacio.");
+        } else if (apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo apellido se encuentra vacio.");
             return;
-        } else if (date == null) {
-            JOptionPane.showMessageDialog(this, "El campo fecha se encuentra vacio.");
+        } else if (jtDni.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo dni se encuentra vacio.");
             return;
         } else {
-            LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            proyecto = new Proyecto(nombre, descripcion, fecha, 1);
-            dataproyecto.guardarProyecto(proyecto);
+            miembro = new Miembro(dni, apellido, nombre, 1);
+            datamiembro.guardarMiembro(miembro);
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -228,8 +226,8 @@ public class ProyectoView extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private com.toedter.calendar.JDateChooser jdcFechaInicio;
-    private javax.swing.JTextField jtDescripcion;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtDni;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
 }
