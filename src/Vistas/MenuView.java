@@ -52,6 +52,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmCrearEquipo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmCrearMiembro = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -104,6 +106,18 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1.add(jmCrearEquipo);
 
         jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Miembro");
+
+        jmCrearMiembro.setText("Crear Miembro");
+        jmCrearMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCrearMiembroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmCrearMiembro);
+
+        jMenuBar2.add(jMenu2);
 
         jMenu7.setText("Tarea");
 
@@ -159,9 +173,17 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        CrearEquipo ce = new CrearEquipo();
-        centrar(ce);
+        CrearEquipoView cev = new CrearEquipoView();
+        centrar(cev);
     }//GEN-LAST:event_jmCrearEquipoActionPerformed
+
+    private void jmCrearMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearMiembroActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        CrearMiembroView cmv = new CrearMiembroView();
+        centrar(cmv);
+    }//GEN-LAST:event_jmCrearMiembroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +223,7 @@ public class MenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar2;
@@ -209,6 +232,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jmCrearEquipo;
+    private javax.swing.JMenuItem jmCrearMiembro;
     private javax.swing.JMenuItem jmCrearProyecto;
     // End of variables declaration//GEN-END:variables
 }
