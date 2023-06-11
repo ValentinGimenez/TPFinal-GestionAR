@@ -39,6 +39,9 @@ public class TPFinalGestionAR {
         Miembro miembro = new Miembro(43764888, "Gimenez", "Valentin", 1);
         dm.guardarMiembro(miembro);
 
+        //Buscar miembro por dni
+        dm.buscarMiembroPorDNI(43764888);
+
         //Asignar equipo miembros
         EquipoMiembros equipoMiembros = new EquipoMiembros(equipo, miembro, LocalDate.now());
         dem.guardarEquipoMiembros(equipoMiembros);
@@ -48,7 +51,7 @@ public class TPFinalGestionAR {
         dt.guardarTarea(tarea);
 
         //Se modifico la Tarea
-        dt.modificarTarea(1, 3);
+        dt.actualizarEstadoTarea(1, 3);
 
         // Consultar todas las tareas
         System.out.println(dt.consultarTareas());

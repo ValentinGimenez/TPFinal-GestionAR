@@ -79,7 +79,7 @@ public class DataTarea {
         return tareas;
     }
 
-    public void modificarTarea(int idTarea, int newEstado) {
+    public void actualizarEstadoTarea(int idTarea, int newEstado) {
 
         String sql = "UPDATE tarea SET estado = ? WHERE  idTarea = ?";
         try {
