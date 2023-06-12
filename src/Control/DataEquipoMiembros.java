@@ -44,7 +44,7 @@ public class DataEquipoMiembros {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 equipoMiembros.setIdMiembroEq(rs.getInt("idMiembroEq"));
-                JOptionPane.showMessageDialog(null, "EquipoMiembro añadido con exito.");
+                JOptionPane.showMessageDialog(null, "Miembro añadido al equipo con exito.");
             }
             ps.close();
 
@@ -91,6 +91,7 @@ public class DataEquipoMiembros {
                 miembro.setApellido(rs.getString("apellido"));
                 miembro.setDni(rs.getInt("dni"));
                 miembro.setEstado(rs.getInt("estado"));
+                miembro.setIdMiembro(rs.getInt("idMiembro"));
                 miembros.add(miembro);
             }
             ps.close();
@@ -99,5 +100,24 @@ public class DataEquipoMiembros {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
         }
         return miembros;
+    }
+
+    public boolean consultarMiembroExistente(int idEquipo, int idMiembro) {
+        try {
+            String sql = "SELECT * FROM miembro M JOIN equipomiembros EM ON M.idMiembro = EM.idMiembro WHERE EM.idEquipo = ? AND EM.idMiembro = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEquipo);
+            ps.setInt(2, idMiembro);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Ya existe el miembro en el equipo.");
+                ps.close();
+                return true;
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
+        }
+        return false;
     }
 }
