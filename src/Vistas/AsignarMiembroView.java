@@ -210,17 +210,18 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
             miembro = datamiembro.buscarMiembroPorDNI(documento);
             Date date = jdcFechaIncorporacion.getDate();
             if (miembro != null) {
-                if (miembro == null) {
-                    return;
-                } else if (date == null) {
+                if (date == null) {
                     JOptionPane.showMessageDialog(this, "El campo fecha se encuentra vacio.");
+                    return;
+                } else if (dataequipomiembros.consultarMiembroExistente(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), miembro.getIdMiembro())) {
                     return;
                 } else {
                     LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    dataequipomiembros.consultarMiembroExistente(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), miembro.getIdMiembro());
                     equipomiembros = new EquipoMiembros((Equipo) jcbEquipo.getSelectedItem(), miembro, fecha);
                     dataequipomiembros.guardarEquipoMiembros(equipomiembros);
                 }
-            }else{
+            } else {
                 return;
             }
         } catch (NumberFormatException nf) {
