@@ -52,12 +52,13 @@ public class MenuView extends javax.swing.JFrame {
         jmConsultarProyecto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmCrearEquipo = new javax.swing.JMenuItem();
+        jmAsignarMiembro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmCrearMiembro = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        jmActualizarEstado = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmAsignarTarea = new javax.swing.JMenuItem();
+        jmBuscarTarea = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -105,6 +106,14 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMenu1.add(jmCrearEquipo);
 
+        jmAsignarMiembro.setText("Asignar Miembro");
+        jmAsignarMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAsignarMiembroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmAsignarMiembro);
+
         jMenuBar2.add(jMenu1);
 
         jMenu2.setText("Miembro");
@@ -119,23 +128,23 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu2);
 
-        jMenu7.setText("Tarea");
+        jmActualizarEstado.setText("Tarea");
 
         jMenuItem2.setText("Crear Tarea");
-        jMenu7.add(jMenuItem2);
+        jmActualizarEstado.add(jMenuItem2);
 
-        jMenuItem3.setText("Asignar Tarea");
-        jMenu7.add(jMenuItem3);
+        jmAsignarTarea.setText("Asignar Tarea");
+        jmActualizarEstado.add(jmAsignarTarea);
 
-        jMenuItem4.setText("Buscar Tarea");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jmBuscarTarea.setText("Actualizar Estado");
+        jmBuscarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jmBuscarTareaActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem4);
+        jmActualizarEstado.add(jmBuscarTarea);
 
-        jMenuBar2.add(jMenu7);
+        jMenuBar2.add(jmActualizarEstado);
 
         setJMenuBar(jMenuBar2);
 
@@ -161,9 +170,9 @@ public class MenuView extends javax.swing.JFrame {
         centrar(cpv);
     }//GEN-LAST:event_jmCrearProyectoActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jmBuscarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarTareaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jmBuscarTareaActionPerformed
 
     private void jmConsultarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarProyectoActionPerformed
         // TODO add your handling code here:
@@ -188,6 +197,14 @@ public class MenuView extends javax.swing.JFrame {
         CrearMiembroView cmv = new CrearMiembroView();
         centrar(cmv);
     }//GEN-LAST:event_jmCrearMiembroActionPerformed
+
+    private void jmAsignarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAsignarMiembroActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AsignarMiembroView amv = new AsignarMiembroView();
+        centrar(amv);
+    }//GEN-LAST:event_jmAsignarMiembroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,11 +246,12 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenu jmActualizarEstado;
+    private javax.swing.JMenuItem jmAsignarMiembro;
+    private javax.swing.JMenuItem jmAsignarTarea;
+    private javax.swing.JMenuItem jmBuscarTarea;
     private javax.swing.JMenuItem jmConsultarProyecto;
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;

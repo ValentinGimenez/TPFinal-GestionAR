@@ -40,6 +40,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmCrearEquipoActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmAsignarMiembro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Asignar Miembro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmAsignarMiembroActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -57,7 +65,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu7">
+        <Menu class="javax.swing.JMenu" name="jmActualizarEstado">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tarea"/>
           </Properties>
@@ -67,17 +75,17 @@
                 <Property name="text" type="java.lang.String" value="Crear Tarea"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jmAsignarTarea">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Asignar Tarea"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="jmBuscarTarea">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar Tarea"/>
+                <Property name="text" type="java.lang.String" value="Actualizar Estado"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmBuscarTareaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
