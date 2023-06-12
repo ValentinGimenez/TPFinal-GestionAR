@@ -86,7 +86,7 @@ public class DataProyecto {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 proyecto.setNombre(rs.getString("nombre"));
-                proyecto.setDescripcion(rs.getString("direccion"));
+                proyecto.setDescripcion(rs.getString("descripcion"));
                 proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 proyecto.setEstado(rs.getInt("estado"));
                 proyecto.setIdProyecto(rs.getInt("idProyecto"));
