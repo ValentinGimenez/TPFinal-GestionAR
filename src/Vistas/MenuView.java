@@ -56,7 +56,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmCrearMiembro = new javax.swing.JMenuItem();
         jmActualizarEstado = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmCrearTarea = new javax.swing.JMenuItem();
         jmAsignarTarea = new javax.swing.JMenuItem();
         jmBuscarTarea = new javax.swing.JMenuItem();
 
@@ -130,8 +130,13 @@ public class MenuView extends javax.swing.JFrame {
 
         jmActualizarEstado.setText("Tarea");
 
-        jMenuItem2.setText("Crear Tarea");
-        jmActualizarEstado.add(jMenuItem2);
+        jmCrearTarea.setText("Crear Tarea");
+        jmCrearTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCrearTareaActionPerformed(evt);
+            }
+        });
+        jmActualizarEstado.add(jmCrearTarea);
 
         jmAsignarTarea.setText("Asignar Tarea");
         jmActualizarEstado.add(jmAsignarTarea);
@@ -206,6 +211,14 @@ public class MenuView extends javax.swing.JFrame {
         centrar(amv);
     }//GEN-LAST:event_jmAsignarMiembroActionPerformed
 
+    private void jmCrearTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearTareaActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        CrearTareaView ctv = new CrearTareaView();
+        centrar(ctv);
+    }//GEN-LAST:event_jmCrearTareaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,7 +260,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jmActualizarEstado;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
@@ -256,5 +268,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;
     private javax.swing.JMenuItem jmCrearProyecto;
+    private javax.swing.JMenuItem jmCrearTarea;
     // End of variables declaration//GEN-END:variables
 }

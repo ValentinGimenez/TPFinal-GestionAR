@@ -217,7 +217,6 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
                     return;
                 } else {
                     LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    dataequipomiembros.consultarMiembroExistente(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), miembro.getIdMiembro());
                     equipomiembros = new EquipoMiembros((Equipo) jcbEquipo.getSelectedItem(), miembro, fecha);
                     dataequipomiembros.guardarEquipoMiembros(equipomiembros);
                 }

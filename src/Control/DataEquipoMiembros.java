@@ -56,7 +56,7 @@ public class DataEquipoMiembros {
 
     public EquipoMiembros buscarEquipoMiembros(int id) {
         EquipoMiembros equipoMiembros = new EquipoMiembros();
-        String sql = "SELECT * FROM equipoMiembros WHERE idEquipoMiembros = ?";
+        String sql = "SELECT * FROM equipoMiembros WHERE idMiembroEq = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -64,8 +64,8 @@ public class DataEquipoMiembros {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 equipoMiembros.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
-                equipoMiembros.setMiembro(dataMiembro.buscarMiembro(rs.getInt("miembro")));
-                equipoMiembros.setEquipo(dataEquipo.buscarEquipo(rs.getInt("equipo")));
+                equipoMiembros.setMiembro(dataMiembro.buscarMiembro(rs.getInt("idMiembro")));
+                equipoMiembros.setEquipo(dataEquipo.buscarEquipo(rs.getInt("idEquipo")));
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro un EquipoMiembro con el id solicitado.");
             }
@@ -119,5 +119,28 @@ public class DataEquipoMiembros {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
         }
         return false;
+    }
+
+    public List<EquipoMiembros> listarEquipoMiembros() {
+
+        List<EquipoMiembros> equipomiembros = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM equipomiembros";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                EquipoMiembros equipomiembro = new EquipoMiembros();
+                equipomiembro.setIdMiembroEq(rs.getInt("idMiembroEq"));
+                equipomiembro.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
+                equipomiembro.setEquipo(dataEquipo.buscarEquipo(rs.getInt("idEquipo")));
+                equipomiembro.setMiembro(dataMiembro.buscarMiembro(rs.getInt("idMiembro")));
+                equipomiembros.add(equipomiembro);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
+        }
+        return equipomiembros;
     }
 }

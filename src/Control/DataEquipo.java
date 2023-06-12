@@ -62,10 +62,11 @@ public class DataEquipo {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                equipo.setProyecto(dataProyecto.buscarProyecto(rs.getInt("dni")));
+                equipo.setProyecto(dataProyecto.buscarProyecto(rs.getInt("idProyecto")));
                 equipo.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
                 equipo.setNombre(rs.getString("nombre"));
                 equipo.setEstado(rs.getInt("estado"));
+                equipo.setIdEquipo(rs.getInt("idEquipo"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro Equipo con el id solicitado.");
