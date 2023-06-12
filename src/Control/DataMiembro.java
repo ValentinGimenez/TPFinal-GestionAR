@@ -73,6 +73,7 @@ public class DataMiembro {
         }
         return miembro;
     }
+
     public Miembro buscarMiembroPorDNI(int dni) {
         Miembro miembro = new Miembro();
         String sql = "SELECT * FROM miembro WHERE dni = ?";
@@ -87,15 +88,16 @@ public class DataMiembro {
                 miembro.setApellido(rs.getString("apellido"));
                 miembro.setNombre(rs.getString("nombre"));
                 miembro.setEstado(rs.getInt("estado"));
+                ps.close();
+                return miembro;
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro un miembro con el dni solicitado.");
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
         }
-        return miembro;
+        return null;
     }
 
 }
