@@ -19,6 +19,7 @@ import Modelo.Proyecto;
 import Modelo.Tarea;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -48,6 +49,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     public ConsultarProyectosView() {
         initComponents();
         cargarProyecto();
+        armarModelo();
     }
 
     /**
@@ -108,6 +110,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Seleccionar Proyecto");
 
+        jcbProyecto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbProyectoItemStateChanged(evt);
+            }
+        });
+
         jtTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -144,6 +152,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbMiembro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbMiembroItemStateChanged(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Seleccionar Miembro");
@@ -154,7 +168,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,11 +237,59 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 //            cargarTarea();
 //        }
     }//GEN-LAST:event_jrbPendienteActionPerformed
+
+    private void jcbProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbProyectoItemStateChanged
+        // TODO add your handling code here:
+        cargarMiembro();
+    }//GEN-LAST:event_jcbProyectoItemStateChanged
+
+    private void jcbMiembroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMiembroItemStateChanged
+        // TODO add your handling code here:
+        tabla.setRowCount(0);
+        llenarTabla();
+    }//GEN-LAST:event_jcbMiembroItemStateChanged
     private void cargarProyecto() {
         DefaultComboBoxModel<Proyecto> cbox = new DefaultComboBoxModel();
         jcbProyecto.setModel(cbox);
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
+        }
+    }
+
+    private void cargarMiembro() {
+        DefaultComboBoxModel<Miembro> cbox = new DefaultComboBoxModel();
+        jcbMiembro.setModel(cbox);
+        for (Miembro emiem : dataequipomiembros.listarMiembrosPorProyecto(((Proyecto) jcbProyecto.getSelectedItem()).getIdProyecto())) {
+            jcbMiembro.addItem(emiem);
+        }
+    }
+
+    private void armarModelo() {
+        ArrayList titulos = new ArrayList();
+        titulos.add("TAREAS");
+        titulos.add("MIEMBROS");
+        titulos.add("FECHA INICIO");
+        titulos.add("FECHA CIERRE");
+        for (Object titulo : titulos) {
+            tabla.addColumn(titulo);
+        }
+        jtTabla.setModel(tabla);
+    }
+
+    private void llenarTabla() {
+        Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+        if (jrbCompletada.isSelected()) {
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
+            }
+        } else if (jrbProgreso.isSelected()) {
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
+            }
+        } else if (jrbPendiente.isSelected()) {
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
+            }
         }
     }
 
