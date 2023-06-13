@@ -102,4 +102,29 @@ public class DataEquipo {
         }
         return equipos;
     }
+
+    public List<Equipo> listarEquiposPorProyecto(int idProyecto) {
+
+        List<Equipo> equipos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM equipo WHERE idProyecto = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProyecto);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                equipo.setNombre(rs.getString("nombre"));
+                equipo.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                equipo.setEstado(rs.getInt("estado"));
+                equipo.setIdEquipo(rs.getInt("idEquipo"));
+                equipo.setProyecto(dataProyecto.buscarProyecto(rs.getInt("idProyecto")));
+                equipos.add(equipo);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
+        }
+        return equipos;
+    }
 }
