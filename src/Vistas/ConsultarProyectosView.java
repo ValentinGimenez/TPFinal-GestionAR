@@ -5,15 +5,25 @@
  */
 package Vistas;
 
+import Control.DataComentarios;
 import Control.DataEquipo;
+import Control.DataEquipoMiembros;
+import Control.DataMiembro;
 import Control.DataProyecto;
+import Control.DataTarea;
+import Modelo.Comentarios;
 import Modelo.Equipo;
+import Modelo.EquipoMiembros;
+import Modelo.Miembro;
 import Modelo.Proyecto;
+import Modelo.Tarea;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,10 +33,18 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     DataEquipo dataequipo = new DataEquipo();
     Equipo equipo = null;
+    DataMiembro datamiembro = new DataMiembro();
+    Miembro miembro = null;
     DataProyecto dataproyecto = new DataProyecto();
     Proyecto proyecto = null;
+    DataTarea datatarea = new DataTarea();
+    Tarea tarea = null;
+    DataEquipoMiembros dataequipomiembros = new DataEquipoMiembros();
+    EquipoMiembros equipomiembros = null;
+    DataComentarios datacomentario = new DataComentarios();
+    Comentarios comentarios = null;
+    private DefaultTableModel tabla = new DefaultTableModel();
 
-    
     public ConsultarProyectosView() {
         initComponents();
         cargarProyecto();
@@ -47,7 +65,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jcbProyecto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTabla = new javax.swing.JTable();
+        jrbCompletada = new javax.swing.JRadioButton();
+        jrbProgreso = new javax.swing.JRadioButton();
+        jrbPendiente = new javax.swing.JRadioButton();
+        jcbMiembro = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setTitle("Consultar Proyectos");
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -58,18 +81,18 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Consultar Proyecto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,20 +105,48 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Seleccionar Proyecto");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tareas", "Miembros", "Comentarios"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTabla);
+
+        jrbCompletada.setText("Completada");
+        jrbCompletada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jrbCompletada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbCompletadaActionPerformed(evt);
+            }
+        });
+
+        jrbProgreso.setText("En Progreso");
+        jrbProgreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jrbProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbProgresoActionPerformed(evt);
+            }
+        });
+
+        jrbPendiente.setText("Pendiente");
+        jrbPendiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbPendienteActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Seleccionar Miembro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,49 +154,95 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jcbProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(150, 150, 150))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jcbMiembro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jrbCompletada)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrbProgreso)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(jrbPendiente))
+                                .addComponent(jcbProyecto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jcbProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbPendiente)
+                    .addComponent(jrbProgreso)
+                    .addComponent(jrbCompletada))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jcbMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
+        // TODO add your handling code here:
+//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 0 && jrbCompletada.isSelected()) {
+//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 0);
+//            cargarTarea();
+//        }
+    }//GEN-LAST:event_jrbCompletadaActionPerformed
+
+    private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
+        // TODO add your handling code here:
+//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 1 && jrbProgreso.isSelected()) {
+//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 1);
+//            cargarTarea();
+//        }
+    }//GEN-LAST:event_jrbProgresoActionPerformed
+
+    private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
+        // TODO add your handling code here:
+//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 2 && jrbPendiente.isSelected()) {
+//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 2);
+//            cargarTarea();
+//        }
+    }//GEN-LAST:event_jrbPendienteActionPerformed
     private void cargarProyecto() {
         DefaultComboBoxModel<Proyecto> cbox = new DefaultComboBoxModel();
         jcbProyecto.setModel(cbox);
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
         }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<Miembro> jcbMiembro;
     private javax.swing.JComboBox<Proyecto> jcbProyecto;
+    private javax.swing.JRadioButton jrbCompletada;
+    private javax.swing.JRadioButton jrbPendiente;
+    private javax.swing.JRadioButton jrbProgreso;
+    private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
 }
