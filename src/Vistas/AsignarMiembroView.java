@@ -60,7 +60,7 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
         jcbEquipo = new javax.swing.JComboBox<>();
         jbAgregar1 = new javax.swing.JButton();
 
-        setTitle("Crear Proyecto");
+        setTitle("Asignar Miembro");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));

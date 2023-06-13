@@ -72,7 +72,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
         jrbProgreso = new javax.swing.JRadioButton();
         jrbPendiente = new javax.swing.JRadioButton();
 
-        setTitle("Crear Tarea");
+        setTitle("Actualizar Tarea");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -147,7 +147,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
         jLabel4.setText("Fecha de Avance");
 
         jbGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbGuardar.setText("GUARDAR");
+        jbGuardar.setText("REGISTRAR");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -225,9 +225,9 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
                         .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(198, 198, 198))))
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbGuardar))
+                        .addGap(207, 207, 207))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -55,7 +55,7 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jcbProyecto = new javax.swing.JComboBox<>();
 
-        setTitle("Crear Proyecto");
+        setTitle("Crear Equipo");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
