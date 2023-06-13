@@ -25,6 +25,7 @@ public class DataTarea {
 
     private Connection con = null;
     private DataMiembro dataMiembro = new DataMiembro();
+    private DataEquipoMiembros dataequipomiembros = new DataEquipoMiembros();
 
     public DataTarea() {
         con = Conexion.getConnection();
@@ -57,17 +58,18 @@ public class DataTarea {
 
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tarea WHERE estado = 1";
+            String sql = "SELECT * FROM tarea";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Tarea tarea = new Tarea();
 
                 tarea.setNombre(rs.getString("nombre"));
-                tarea.setFechaCreacion(rs.getDate("fechaInicio").toLocalDate());
+                tarea.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
                 tarea.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
                 tarea.setEstado(rs.getInt("estado"));
-                int idMiembro = rs.getInt("idMiembro");
+                tarea.setIdTarea(rs.getInt("idTarea"));
+                tarea.setEquipomiembros(dataequipomiembros.buscarEquipoMiembros(rs.getInt("idMiembroEq")));
 
                 tareas.add(tarea);
             }
