@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author Valentin
  */
-public class CrearTareaView extends javax.swing.JInternalFrame {
+public class AsignarTareaView extends javax.swing.JInternalFrame {
 
     DataEquipo dataequipo = new DataEquipo();
     Equipo equipo = null;
@@ -34,7 +34,7 @@ public class CrearTareaView extends javax.swing.JInternalFrame {
     DataEquipoMiembros dataequipomiembros = new DataEquipoMiembros();
     EquipoMiembros equipomiembros = null;
 
-    public CrearTareaView() {
+    public AsignarTareaView() {
         initComponents();
         cargarEquipoMiembro();
     }

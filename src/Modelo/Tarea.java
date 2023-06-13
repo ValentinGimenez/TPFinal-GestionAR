@@ -18,7 +18,7 @@ public class Tarea {
     private String nombre;
     private LocalDate fechaCreacion;
     private LocalDate fechaCierre;
-    private int estado;
+    private int estado;//3 estados,0 completadas, 1 en progreso, 2 pendiente
 
     public Tarea() {
 
@@ -91,7 +91,7 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return "Tarea{" + "idTarea=" + idTarea + ", equipomiembros=" + equipomiembros + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", fechaCierre=" + fechaCierre + ", estado=" + estado + '}';
+        return nombre +" Inicio:" + fechaCreacion + ", Fin:" + fechaCierre;
     }
 
 }

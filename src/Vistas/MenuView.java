@@ -56,9 +56,8 @@ public class MenuView extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmCrearMiembro = new javax.swing.JMenuItem();
         jmActualizarEstado = new javax.swing.JMenu();
-        jmCrearTarea = new javax.swing.JMenuItem();
         jmAsignarTarea = new javax.swing.JMenuItem();
-        jmBuscarTarea = new javax.swing.JMenuItem();
+        jmActualizarTarea = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -130,24 +129,21 @@ public class MenuView extends javax.swing.JFrame {
 
         jmActualizarEstado.setText("Tarea");
 
-        jmCrearTarea.setText("Crear Tarea");
-        jmCrearTarea.addActionListener(new java.awt.event.ActionListener() {
+        jmAsignarTarea.setText("Asignar Tarea");
+        jmAsignarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCrearTareaActionPerformed(evt);
+                jmAsignarTareaActionPerformed(evt);
             }
         });
-        jmActualizarEstado.add(jmCrearTarea);
-
-        jmAsignarTarea.setText("Asignar Tarea");
         jmActualizarEstado.add(jmAsignarTarea);
 
-        jmBuscarTarea.setText("Actualizar Estado");
-        jmBuscarTarea.addActionListener(new java.awt.event.ActionListener() {
+        jmActualizarTarea.setText("Actualizar Tarea");
+        jmActualizarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmBuscarTareaActionPerformed(evt);
+                jmActualizarTareaActionPerformed(evt);
             }
         });
-        jmActualizarEstado.add(jmBuscarTarea);
+        jmActualizarEstado.add(jmActualizarTarea);
 
         jMenuBar2.add(jmActualizarEstado);
 
@@ -175,9 +171,13 @@ public class MenuView extends javax.swing.JFrame {
         centrar(cpv);
     }//GEN-LAST:event_jmCrearProyectoActionPerformed
 
-    private void jmBuscarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarTareaActionPerformed
+    private void jmActualizarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmActualizarTareaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jmBuscarTareaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ActualizarTareaView actv = new ActualizarTareaView();
+        centrar(actv);
+    }//GEN-LAST:event_jmActualizarTareaActionPerformed
 
     private void jmConsultarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarProyectoActionPerformed
         // TODO add your handling code here:
@@ -211,13 +211,13 @@ public class MenuView extends javax.swing.JFrame {
         centrar(amv);
     }//GEN-LAST:event_jmAsignarMiembroActionPerformed
 
-    private void jmCrearTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCrearTareaActionPerformed
+    private void jmAsignarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAsignarTareaActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        CrearTareaView ctv = new CrearTareaView();
-        centrar(ctv);
-    }//GEN-LAST:event_jmCrearTareaActionPerformed
+        AsignarTareaView atv = new AsignarTareaView();
+        centrar(atv);
+    }//GEN-LAST:event_jmAsignarTareaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,13 +261,12 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jmActualizarEstado;
+    private javax.swing.JMenuItem jmActualizarTarea;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
-    private javax.swing.JMenuItem jmBuscarTarea;
     private javax.swing.JMenuItem jmConsultarProyecto;
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;
     private javax.swing.JMenuItem jmCrearProyecto;
-    private javax.swing.JMenuItem jmCrearTarea;
     // End of variables declaration//GEN-END:variables
 }
