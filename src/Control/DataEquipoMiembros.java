@@ -144,12 +144,13 @@ public class DataEquipoMiembros {
         return equipomiembros;
     }
 
-    public List<Miembro> listarMiembros() {
+    public List<Miembro> listarMiembrosPorProyecto(int idProyecto) {
 
         List<Miembro> miembros = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM miembro M JOIN equipomiembros EM ON M.idMiembro = EM.idMiembro";
+            String sql = "SELECT M.* FROM miembro M JOIN equipomiembros EM ON M.idMiembro = EM.idMiembro JOIN equipo E ON EM.idEquipo = E.idEquipo WHERE E.idProyecto = ?";
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProyecto);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Miembro miembro = new Miembro();
