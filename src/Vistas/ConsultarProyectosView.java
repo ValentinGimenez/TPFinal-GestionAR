@@ -216,37 +216,62 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
         // TODO add your handling code here:
-//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 0 && jrbCompletada.isSelected()) {
-//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 0);
-//            cargarTarea();
-//        }
+        if (jrbCompletada.isSelected()) {
+            jrbCompletada.setSelected(true);
+            jrbProgreso.setSelected(false);
+            jrbPendiente.setSelected(false);
+            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            tabla.setRowCount(0);
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                if (t.getEstado() == 0) {
+                    tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
+                }
+            }
+        }
     }//GEN-LAST:event_jrbCompletadaActionPerformed
 
     private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
         // TODO add your handling code here:
-//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 1 && jrbProgreso.isSelected()) {
-//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 1);
-//            cargarTarea();
-//        }
+        if (jrbProgreso.isSelected()) {
+            jrbCompletada.setSelected(false);
+            jrbProgreso.setSelected(true);
+            jrbPendiente.setSelected(false);
+            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            tabla.setRowCount(0);
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                if (t.getEstado() == 1) {
+                    tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
+                }
+            }
+        }
     }//GEN-LAST:event_jrbProgresoActionPerformed
 
     private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
         // TODO add your handling code here:
-//        if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 2 && jrbPendiente.isSelected()) {
-//            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 2);
-//            cargarTarea();
-//        }
+        if (jrbPendiente.isSelected()) {
+            jrbCompletada.setSelected(false);
+            jrbProgreso.setSelected(false);
+            jrbPendiente.setSelected(true);
+            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            tabla.setRowCount(0);
+            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+                if (t.getEstado() == 2) {
+                    tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
+                }
+            }
+        }
     }//GEN-LAST:event_jrbPendienteActionPerformed
 
     private void jcbProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbProyectoItemStateChanged
         // TODO add your handling code here:
+        tabla.setRowCount(0);
+        llenarTabla();
         cargarMiembro();
     }//GEN-LAST:event_jcbProyectoItemStateChanged
 
     private void jcbMiembroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMiembroItemStateChanged
         // TODO add your handling code here:
         tabla.setRowCount(0);
-        llenarTabla();
     }//GEN-LAST:event_jcbMiembroItemStateChanged
     private void cargarProyecto() {
         DefaultComboBoxModel<Proyecto> cbox = new DefaultComboBoxModel();
@@ -277,19 +302,9 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
-        Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
-        if (jrbCompletada.isSelected()) {
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
-                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
-            }
-        } else if (jrbProgreso.isSelected()) {
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
-                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
-            }
-        } else if (jrbPendiente.isSelected()) {
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
-                tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(),t.getFechaCreacion(),t.getFechaCierre()});
-            }
+        Proyecto proyect = (Proyecto) jcbProyecto.getSelectedItem();
+        for (Tarea t : datatarea.listarTareasPorProyecto(proyect.getIdProyecto())) {
+            tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
         }
     }
 
