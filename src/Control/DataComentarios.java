@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +24,7 @@ import javax.swing.JOptionPane;
 public class DataComentarios {
 
     private Connection con = null;
+    private DataTarea datatarea = new DataTarea();
 
     public DataComentarios() {
         con = Conexion.getConnection();
@@ -46,5 +49,27 @@ public class DataComentarios {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Comentarios" + ex.getMessage());
         }
 
+    }
+
+    public List<Comentarios> listarComentariosPorTarea(int idTarea) {
+        List<Comentarios> comentarios = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM comentario WHERE idTarea = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idTarea);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Comentarios comentario = new Comentarios();
+                comentario.setComentario(rs.getString("comentario"));
+                comentario.setFechaAvance(rs.getDate("fechaAvance").toLocalDate());
+                comentario.setTarea(datatarea.buscarTarea(rs.getInt("idTarea")));
+                comentario.setIdComentario(rs.getInt("idComentario"));
+                comentarios.add(comentario);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea: " + ex.getMessage());
+        }
+        return comentarios;
     }
 }
