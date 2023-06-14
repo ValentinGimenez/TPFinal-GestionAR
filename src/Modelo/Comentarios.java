@@ -69,7 +69,7 @@ public class Comentarios {
 
     @Override
     public String toString() {
-        return "Comentarios{" + "idComentario=" + idComentario + ", Tarea=" + Tarea + ", comentario=" + comentario + ", fechaAvance=" + fechaAvance + '}';
+        return comentario + ", fecha de avance: " + fechaAvance;
     }
 
 }

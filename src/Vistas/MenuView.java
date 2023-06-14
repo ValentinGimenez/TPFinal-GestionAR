@@ -53,6 +53,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmCrearEquipo = new javax.swing.JMenuItem();
         jmAsignarMiembro = new javax.swing.JMenuItem();
+        jmConsultarEquipo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmCrearMiembro = new javax.swing.JMenuItem();
         jmActualizarEstado = new javax.swing.JMenu();
@@ -112,6 +113,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jmAsignarMiembro);
+
+        jmConsultarEquipo.setText("Consultar Equipos");
+        jmConsultarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmConsultarEquipoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmConsultarEquipo);
 
         jMenuBar2.add(jMenu1);
 
@@ -219,6 +228,14 @@ public class MenuView extends javax.swing.JFrame {
         centrar(atv);
     }//GEN-LAST:event_jmAsignarTareaActionPerformed
 
+    private void jmConsultarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarEquipoActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ConsultarEquiposView cev = new ConsultarEquiposView();
+        centrar(cev);
+    }//GEN-LAST:event_jmConsultarEquipoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +281,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmActualizarTarea;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
+    private javax.swing.JMenuItem jmConsultarEquipo;
     private javax.swing.JMenuItem jmConsultarProyecto;
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;

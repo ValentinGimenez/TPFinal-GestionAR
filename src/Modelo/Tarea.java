@@ -93,5 +93,4 @@ public class Tarea {
     public String toString() {
         return nombre +" Inicio:" + fechaCreacion + ", Fin:" + fechaCierre;
     }
-
 }
