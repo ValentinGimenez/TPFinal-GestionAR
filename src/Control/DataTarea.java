@@ -125,4 +125,28 @@ public class DataTarea {
         return tareas;
     }
 
+    public List<Tarea> listarTareasPorProyecto(int idProyecto) {
+        List<Tarea> tareas = new ArrayList<>();
+        try {
+            String sql = "SELECT T.* FROM tarea T JOIN equipomiembros EM ON T.idMiembroEq = EM.idMiembroEq JOIN equipo E ON EM.idEquipo = E.idEquipo JOIN proyecto P ON E.idProyecto = P.idProyecto WHERE P.idProyecto = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProyecto);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Tarea tarea = new Tarea();
+
+                tarea.setNombre(rs.getString("nombre"));
+                tarea.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                tarea.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                tarea.setEstado(rs.getInt("estado"));
+                tarea.setIdTarea(rs.getInt("idTarea"));
+                tarea.setEquipomiembros(dataequipomiembros.buscarEquipoMiembros(rs.getInt("idMiembroEq")));
+                tareas.add(tarea);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea: " + ex.getMessage());
+        }
+        return tareas;
+    }
 }
