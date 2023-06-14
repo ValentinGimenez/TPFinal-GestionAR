@@ -70,7 +70,7 @@ public class ConsultarEquiposView extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtTabla = new javax.swing.JTable();
 
-        setTitle("Consultar Proyectos");
+        setTitle("Consultar Equipos");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
