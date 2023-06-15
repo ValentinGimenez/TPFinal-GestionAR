@@ -224,10 +224,17 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
             LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             
-           tarea = new Tarea((EquipoMiembros)jcbEquipoMiembro.getSelectedItem(),nombre,fecha1,fecha2,1);
-           datatarea.guardarTarea(tarea);
-           limpiarCampos();
-           jtNombre.requestFocus();
+            if (fecha1.isAfter(fecha2)) {
+                JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser anterior a la fecha de cierre.");
+                return;
+            }else if(((EquipoMiembros) jcbEquipoMiembro.getSelectedItem()).getFechaIncorporacion().isAfter(fecha1)){
+                JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha de incorporacion.");
+                return;
+            }
+            tarea = new Tarea((EquipoMiembros) jcbEquipoMiembro.getSelectedItem(), nombre, fecha1, fecha2, 1);
+            datatarea.guardarTarea(tarea);
+            limpiarCampos();
+            jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -242,8 +249,8 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jtNombre.setText("");
         jdcFechaInicio.setDate(new Date());
         jdcFechaCierre.setDate(new Date());

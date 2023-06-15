@@ -200,6 +200,10 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(((Proyecto)jcbProyecto.getSelectedItem()).getFechaInicio().isAfter(fecha)){
+                JOptionPane.showMessageDialog(this, "La fecha de inicio del equipo no puede ser anterior a la fecha de inicio del proyecto.");
+                        return;
+            }
             equipo = new Equipo((Proyecto)jcbProyecto.getSelectedItem(), nombre, fecha, 1);
             dataequipo.guardarEquipo(equipo);
             limpiarCampos();

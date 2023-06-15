@@ -214,6 +214,10 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
                     return;
                 } else {
                     LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if (((Equipo) jcbEquipo.getSelectedItem()).getFechaCreacion().isAfter(fecha)) {
+                        JOptionPane.showMessageDialog(this, "La fecha de incorporacion no puede ser anterior a la creacion del equipo.");
+                        return;
+                    }
                     equipomiembros = new EquipoMiembros((Equipo) jcbEquipo.getSelectedItem(), miembro, fecha);
                     dataequipomiembros.guardarEquipoMiembros(equipomiembros);
                 }
