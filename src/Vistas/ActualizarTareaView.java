@@ -277,7 +277,13 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+            if (((Tarea) jcbTarea.getSelectedItem()).getFechaCreacion().isAfter(fecha)) {
+                JOptionPane.showMessageDialog(this, "La fecha de avance no puede ser anterior a la fecha de inicio.");
+                return;
+            }else if (((Tarea) jcbTarea.getSelectedItem()).getFechaCierre().isBefore(fecha)) {
+                JOptionPane.showMessageDialog(this, "La fecha de avance no puede ser luego de la fecha de cierre.");
+                return;
+            }
             comentarios = new Comentarios((Tarea) jcbTarea.getSelectedItem(), comentario, fecha);
             datacomentario.guardarComentario(comentarios);
         }

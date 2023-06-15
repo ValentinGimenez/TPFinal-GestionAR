@@ -206,6 +206,10 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if (LocalDate.now().isAfter(fecha)) {
+                JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha actual.");
+                return;
+            }
             proyecto = new Proyecto(nombre, descripcion, fecha, 1);
             dataproyecto.guardarProyecto(proyecto);
             limpiarCampos();
