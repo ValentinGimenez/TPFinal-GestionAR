@@ -226,7 +226,8 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
             
            tarea = new Tarea((EquipoMiembros)jcbEquipoMiembro.getSelectedItem(),nombre,fecha1,fecha2,1);
            datatarea.guardarTarea(tarea);
-
+           limpiarCampos();
+           jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -241,7 +242,12 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-
+    
+    private void limpiarCampos(){
+        jtNombre.setText("");
+        jdcFechaInicio.setDate(new Date());
+        jdcFechaCierre.setDate(new Date());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

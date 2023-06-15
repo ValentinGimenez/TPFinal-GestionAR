@@ -59,6 +59,7 @@ public class MenuView extends javax.swing.JFrame {
         jmActualizarEstado = new javax.swing.JMenu();
         jmAsignarTarea = new javax.swing.JMenuItem();
         jmActualizarTarea = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -156,6 +157,14 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar2.add(jmActualizarEstado);
 
+        jMenu3.setText("Salir");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(jMenu3);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -236,6 +245,11 @@ public class MenuView extends javax.swing.JFrame {
         centrar(cev);
     }//GEN-LAST:event_jmConsultarEquipoActionPerformed
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,6 +289,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jmActualizarEstado;

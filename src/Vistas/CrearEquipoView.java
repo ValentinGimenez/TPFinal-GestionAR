@@ -202,7 +202,8 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             equipo = new Equipo((Proyecto)jcbProyecto.getSelectedItem(), nombre, fecha, 1);
             dataequipo.guardarEquipo(equipo);
-        
+            limpiarCampos();
+            jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -218,7 +219,11 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-
+    private void limpiarCampos(){
+        jtNombre.setText("");
+        jdcFechaInicio.setDate(new Date());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
