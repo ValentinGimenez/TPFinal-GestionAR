@@ -37,6 +37,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
     EquipoMiembros equipomiembros = null;
     DataComentarios datacomentario = new DataComentarios();
     Comentarios comentarios = null;
+
     public ActualizarTareaView() {
         initComponents();
         cargarTarea();
@@ -276,9 +277,9 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            
-           comentarios= new Comentarios((Tarea)jcbTarea.getSelectedItem(),comentario,fecha);
-           datacomentario.guardarComentario(comentarios);
+
+            comentarios = new Comentarios((Tarea) jcbTarea.getSelectedItem(), comentario, fecha);
+            datacomentario.guardarComentario(comentarios);
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -297,7 +298,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
     private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
         // TODO add your handling code here:
         if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 1 && jrbProgreso.isSelected()) {
-            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(),1);
+            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 1);
             cargarTarea();
         }
     }//GEN-LAST:event_jrbProgresoActionPerformed
@@ -305,7 +306,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
     private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
         // TODO add your handling code here:
         if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 0 && jrbCompletada.isSelected()) {
-            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(),0);
+            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 0);
             cargarTarea();
         }
     }//GEN-LAST:event_jrbCompletadaActionPerformed
@@ -313,7 +314,7 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
     private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
         // TODO add your handling code here:
         if (((Tarea) jcbTarea.getSelectedItem()).getEstado() != 2 && jrbPendiente.isSelected()) {
-            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(),2);
+            datatarea.actualizarEstadoTarea(((Tarea) jcbTarea.getSelectedItem()).getIdTarea(), 2);
             cargarTarea();
         }
     }//GEN-LAST:event_jrbPendienteActionPerformed
@@ -340,7 +341,6 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
                 break;
         }
     }//GEN-LAST:event_jcbTareaItemStateChanged
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -26,7 +26,6 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
     DataProyecto dataproyecto = new DataProyecto();
     Proyecto proyecto = null;
 
-    
     public CrearEquipoView() {
         initComponents();
         cargarProyecto();
@@ -200,11 +199,11 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if(((Proyecto)jcbProyecto.getSelectedItem()).getFechaInicio().isAfter(fecha)){
+            if (((Proyecto) jcbProyecto.getSelectedItem()).getFechaInicio().isAfter(fecha)) {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio del equipo no puede ser anterior a la fecha de inicio del proyecto.");
-                        return;
+                return;
             }
-            equipo = new Equipo((Proyecto)jcbProyecto.getSelectedItem(), nombre, fecha, 1);
+            equipo = new Equipo((Proyecto) jcbProyecto.getSelectedItem(), nombre, fecha, 1);
             dataequipo.guardarEquipo(equipo);
             limpiarCampos();
             jtNombre.requestFocus();
@@ -223,11 +222,11 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         jtNombre.setText("");
         jdcFechaInicio.setDate(new Date());
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

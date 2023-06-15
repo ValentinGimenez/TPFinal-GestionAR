@@ -18,7 +18,6 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
     DataMiembro datamiembro = new DataMiembro();
     Miembro miembro = null;
 
-
     public CrearMiembroView() {
         initComponents();
     }
@@ -214,13 +213,12 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jtNombre.setText("");
         jtApellido.setText("");
         jtDni.setText("");
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

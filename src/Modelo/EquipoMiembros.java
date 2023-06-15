@@ -69,7 +69,7 @@ public class EquipoMiembros {
 
     @Override
     public String toString() {
-        return equipo.getProyecto()+": "+equipo.getNombre() + " - " + miembro.getApellido()+" " +miembro.getNombre();
+        return equipo.getProyecto() + ": " + equipo.getNombre() + " - " + miembro.getApellido() + " " + miembro.getNombre();
     }
 
 }

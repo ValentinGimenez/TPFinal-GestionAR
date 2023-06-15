@@ -231,7 +231,6 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbAgregar1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

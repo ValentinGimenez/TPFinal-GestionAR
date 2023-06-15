@@ -80,7 +80,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Proyecto: " + proyecto +" - Equipo: "+ nombre;
+        return "Proyecto: " + proyecto + " - Equipo: " + nombre;
     }
 
 }

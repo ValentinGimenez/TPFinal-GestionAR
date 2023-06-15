@@ -26,7 +26,7 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
      */
     public CrearProyectoView() {
         initComponents();
-        
+
     }
 
     /**
@@ -217,8 +217,8 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jtNombre.setText("");
         jtDescripcion.setText("");
         jdcFechaInicio.setDate(new Date());

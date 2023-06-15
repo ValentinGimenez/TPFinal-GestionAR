@@ -223,11 +223,11 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
         } else {
             LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            
+
             if (fecha1.isAfter(fecha2)) {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser anterior a la fecha de cierre.");
                 return;
-            }else if(((EquipoMiembros) jcbEquipoMiembro.getSelectedItem()).getFechaIncorporacion().isAfter(fecha1)){
+            } else if (((EquipoMiembros) jcbEquipoMiembro.getSelectedItem()).getFechaIncorporacion().isAfter(fecha1)) {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha de incorporacion.");
                 return;
             }

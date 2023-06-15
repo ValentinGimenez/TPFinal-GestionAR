@@ -78,7 +78,7 @@ public class Miembro {
 
     @Override
     public String toString() {
-        return apellido +" "+nombre;
+        return apellido + " " + nombre;
     }
 
 }
