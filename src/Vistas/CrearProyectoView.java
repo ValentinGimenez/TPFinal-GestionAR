@@ -208,6 +208,8 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             proyecto = new Proyecto(nombre, descripcion, fecha, 1);
             dataproyecto.guardarProyecto(proyecto);
+            limpiarCampos();
+            jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -215,7 +217,12 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
-
+    
+    private void limpiarCampos(){
+        jtNombre.setText("");
+        jtDescripcion.setText("");
+        jdcFechaInicio.setDate(new Date());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

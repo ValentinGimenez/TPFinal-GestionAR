@@ -205,6 +205,8 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
         } else {
             miembro = new Miembro(dni, apellido, nombre, 1);
             datamiembro.guardarMiembro(miembro);
+            limpiarCampos();
+            jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -212,6 +214,12 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+    
+    private void limpiarCampos(){
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jtDni.setText("");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
