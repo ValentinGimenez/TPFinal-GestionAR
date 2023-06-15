@@ -62,7 +62,7 @@ public class DataMiembro {
                 miembro.setApellido(rs.getString("apellido"));
                 miembro.setNombre(rs.getString("nombre"));
                 miembro.setEstado(rs.getInt("estado"));
-
+                miembro.setIdMiembro(rs.getInt("idMiembro"));
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro un miembro con el id solicitado.");
             }
