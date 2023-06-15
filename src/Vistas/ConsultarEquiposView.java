@@ -189,6 +189,7 @@ public class ConsultarEquiposView extends javax.swing.JInternalFrame {
         titulos.add("NOMBRE");
         titulos.add("APELLIDO");
         titulos.add("DNI");
+        titulos.add("INCORPORADO");
         titulos.add("TAREA/s");
         for (Object titulo : titulos) {
             tabla.addColumn(titulo);
@@ -198,13 +199,13 @@ public class ConsultarEquiposView extends javax.swing.JInternalFrame {
 
     private void cargarTabla() {
         tabla.setRowCount(0);
-        for (Miembro m : dataequipomiembros.consultarMiembrosPorIdEquipo(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo())) {
-            List<Tarea> tareasMiembro = datatarea.consultarTareasPorEquipoyMiembro(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(),m.getIdMiembro());
+        for (EquipoMiembros em : dataequipomiembros.listarEquipoMiembrosPorEquipo(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo())) {
+            List<Tarea> tareasMiembro = datatarea.consultarTareasPorEquipoyMiembro(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), em.getMiembro().getIdMiembro());
             String tareas = "";
             for (Tarea tarea : tareasMiembro) {
                 tareas += tarea.getNombre() + "; ";
             }
-            tabla.addRow(new Object[]{m.getNombre(), m.getApellido(), m.getDni(), tareas});
+            tabla.addRow(new Object[]{em.getMiembro().getNombre(), em.getMiembro().getApellido(), em.getMiembro().getDni(), em.getFechaIncorporacion(), tareas});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
