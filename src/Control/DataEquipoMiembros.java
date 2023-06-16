@@ -192,4 +192,27 @@ public class DataEquipoMiembros {
         }
         return equipomiembros;
     }
+    public List<EquipoMiembros> listarEquipoMiembrosPorProyecto(int idProyecto) {
+
+        List<EquipoMiembros> equipomiembros = new ArrayList<>();
+        try {
+            String sql = "SELECT EM.* FROM equipomiembros EM INNER JOIN equipo E ON EM.idEquipo = E.idEquipo WHERE E.idProyecto = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProyecto);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                EquipoMiembros equipomiembro = new EquipoMiembros();
+                equipomiembro.setIdMiembroEq(rs.getInt("idMiembroEq"));
+                equipomiembro.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
+                equipomiembro.setEquipo(dataEquipo.buscarEquipo(rs.getInt("idEquipo")));
+                equipomiembro.setMiembro(dataMiembro.buscarMiembro(rs.getInt("idMiembro")));
+                equipomiembros.add(equipomiembro);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla EquipoMiembro" + ex.getMessage());
+        }
+        return equipomiembros;
+    }
 }
