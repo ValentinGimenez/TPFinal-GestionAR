@@ -58,8 +58,9 @@ public class MenuView extends javax.swing.JFrame {
         jmCrearMiembro = new javax.swing.JMenuItem();
         jmActualizarEstado = new javax.swing.JMenu();
         jmAsignarTarea = new javax.swing.JMenuItem();
-        jmActualizarTarea = new javax.swing.JMenuItem();
+        jmRegistrarAvances = new javax.swing.JMenuItem();
         jmConsultarAvance = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -147,13 +148,13 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmActualizarEstado.add(jmAsignarTarea);
 
-        jmActualizarTarea.setText("Actualizar Tarea");
-        jmActualizarTarea.addActionListener(new java.awt.event.ActionListener() {
+        jmRegistrarAvances.setText("Registrar Avances");
+        jmRegistrarAvances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmActualizarTareaActionPerformed(evt);
+                jmRegistrarAvancesActionPerformed(evt);
             }
         });
-        jmActualizarEstado.add(jmActualizarTarea);
+        jmActualizarEstado.add(jmRegistrarAvances);
 
         jmConsultarAvance.setText("Consultar Avances");
         jmConsultarAvance.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +163,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jmActualizarEstado.add(jmConsultarAvance);
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmActualizarEstado.add(jMenuItem1);
 
         jMenuBar2.add(jmActualizarEstado);
 
@@ -189,13 +198,13 @@ public class MenuView extends javax.swing.JFrame {
         centrar(cpv);
     }//GEN-LAST:event_jmCrearProyectoActionPerformed
 
-    private void jmActualizarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmActualizarTareaActionPerformed
+    private void jmRegistrarAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarAvancesActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        ActualizarTareaView actv = new ActualizarTareaView();
+        RegistrarAvancesTareaView actv = new RegistrarAvancesTareaView();
         centrar(actv);
-    }//GEN-LAST:event_jmActualizarTareaActionPerformed
+    }//GEN-LAST:event_jmRegistrarAvancesActionPerformed
 
     private void jmConsultarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarProyectoActionPerformed
         // TODO add your handling code here:
@@ -253,6 +262,14 @@ public class MenuView extends javax.swing.JFrame {
         centrar(catv);
     }//GEN-LAST:event_jmConsultarAvanceActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ModificarTareaView mtv = new ModificarTareaView();
+        centrar(mtv);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,8 +311,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmActualizarEstado;
-    private javax.swing.JMenuItem jmActualizarTarea;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
     private javax.swing.JMenuItem jmConsultarAvance;
@@ -304,5 +321,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmCrearEquipo;
     private javax.swing.JMenuItem jmCrearMiembro;
     private javax.swing.JMenuItem jmCrearProyecto;
+    private javax.swing.JMenuItem jmRegistrarAvances;
     // End of variables declaration//GEN-END:variables
 }
