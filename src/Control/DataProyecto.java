@@ -137,4 +137,26 @@ public class DataProyecto {
         }
     }
 
+    public void modificarProyecto(Proyecto proyecto) {
+        String sql = "UPDATE proyecto SET nombre = ?, descripcion = ?, fechaInicio = ?, estado = ? WHERE idProyecto = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, proyecto.getNombre());
+            ps.setString(2, proyecto.getDescripcion());
+            ps.setDate(3, Date.valueOf(proyecto.getFechaInicio()));
+            ps.setInt(4, proyecto.getEstado());
+            ps.setInt(5, proyecto.getIdProyecto());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                
+                JOptionPane.showMessageDialog(null, "Proyecto añadido con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proyecto" + ex.getMessage());
+        }
+
+    }
 }

@@ -127,4 +127,25 @@ public class DataEquipo {
         }
         return equipos;
     }
+    public void modificarEquipo(Equipo equipo) {
+        String sql = "UPDATE equipo SET idProyecto = ?, nombre = ?, fechaCreacion = ?, estado = ? WHERE idEquipo = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, equipo.getProyecto().getIdProyecto());
+            ps.setString(2, equipo.getNombre());
+            ps.setDate(3, Date.valueOf(equipo.getFechaCreacion()));
+            ps.setInt(4, equipo.getEstado());
+            ps.setInt(5, equipo.getIdEquipo());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Equipo añadido con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
+        }
+
+    }
 }

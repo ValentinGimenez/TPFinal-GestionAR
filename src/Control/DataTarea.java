@@ -198,4 +198,26 @@ public class DataTarea {
         }
         return tareas;
     }
+     public void modificarTarea(Tarea tarea) {
+        String sql = "UPDATE tarea SET nombre = ?, fechaCreacion = ?, fechaCierre = ?, estado = ?, idMiembroEq = ? WHERE idTarea = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, tarea.getNombre());
+            ps.setDate(2, Date.valueOf(tarea.getFechaCreacion()));
+            ps.setDate(3, Date.valueOf(tarea.getFechaCierre()));
+            ps.setInt(4, tarea.getEstado());
+            ps.setInt(5, tarea.getEquipomiembros().getIdMiembroEq());
+            ps.setInt(6,tarea.getIdTarea());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Tarea actualizada con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
+        }
+
+    }
 }

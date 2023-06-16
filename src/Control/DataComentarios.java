@@ -72,4 +72,24 @@ public class DataComentarios {
         }
         return comentarios;
     }
+    public void modificarComentario(Comentarios comentarios) {
+        String sql = "UPDATE comentarios SET comentario = ?, fechaAvance = ?, idTarea = ? WHERE idComentario = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, comentarios.getComentario());
+            ps.setDate(2, Date.valueOf(comentarios.getFechaAvance()));
+            ps.setInt(3, comentarios.getTarea().getIdTarea());
+            ps.setInt(4, comentarios.getIdComentario());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Comentario añadida con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Comentarios" + ex.getMessage());
+        }
+
+    }
 }

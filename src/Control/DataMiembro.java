@@ -99,5 +99,25 @@ public class DataMiembro {
         }
         return null;
     }
+    public void modificarMiembro(Miembro miembro) {
+        String sql = "UPDATE miembro SET dni = ?, apellido = ?, nombre = ?, estado = ? WHERE idMiembro = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, miembro.getDni());
+            ps.setString(2, miembro.getApellido());
+            ps.setString(3, miembro.getNombre());
+            ps.setInt(4, miembro.getEstado());
+            ps.setInt(5, miembro.getIdMiembro());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Miembro añadido con exito.");
+            }
+            ps.close();
 
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
+        }
+
+    }
 }
