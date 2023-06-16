@@ -294,6 +294,8 @@ public class ActualizarTareaView extends javax.swing.JInternalFrame {
             }
             comentarios = new Comentarios((Tarea) jcbTarea.getSelectedItem(), comentario, fecha);
             datacomentario.guardarComentario(comentarios);
+            jtaComentario.setText("");
+            jdcFechaAvance.setDate(null);
         }
 
     }//GEN-LAST:event_jbGuardarActionPerformed

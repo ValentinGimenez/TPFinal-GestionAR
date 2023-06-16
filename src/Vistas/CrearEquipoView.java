@@ -224,7 +224,7 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
 
     private void limpiarCampos() {
         jtNombre.setText("");
-        jdcFechaInicio.setDate(new Date());
+        jdcFechaInicio.setDate(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

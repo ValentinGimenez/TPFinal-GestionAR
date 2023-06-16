@@ -54,7 +54,7 @@ public class DataComentarios {
     public List<Comentarios> listarComentariosPorTarea(int idTarea) {
         List<Comentarios> comentarios = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM comentario WHERE idTarea = ?";
+            String sql = "SELECT * FROM comentarios WHERE idTarea = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idTarea);
             ResultSet rs = ps.executeQuery();

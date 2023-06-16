@@ -225,7 +225,7 @@ public class CrearProyectoView extends javax.swing.JInternalFrame {
     private void limpiarCampos() {
         jtNombre.setText("");
         jtDescripcion.setText("");
-        jdcFechaInicio.setDate(new Date());
+        jdcFechaInicio.setDate(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
