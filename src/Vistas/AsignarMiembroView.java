@@ -230,7 +230,10 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbAgregar1ActionPerformed
-
+    private void limpiarCampos() {
+               jtDni.setText("");
+               jdcFechaIncorporacion.setDate(new Date());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

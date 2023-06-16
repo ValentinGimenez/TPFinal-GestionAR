@@ -49,7 +49,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     public ConsultarProyectosView() {
         initComponents();
         cargarProyecto();
-        armarModelo();
+        tabla.setColumnCount(0);
     }
 
     /**
@@ -68,13 +68,16 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         jcbProyecto = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTabla = new javax.swing.JTable();
-        jcbMiembro = new javax.swing.JComboBox<>();
+        jcbEquipoMiembros = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jbMostrar = new javax.swing.JButton();
         jrbCompletada = new javax.swing.JRadioButton();
         jrbPendiente = new javax.swing.JRadioButton();
         jrbProgreso = new javax.swing.JRadioButton();
         jbSalir = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jbMostrarProyectos = new javax.swing.JButton();
 
         setTitle("Consultar Proyectos");
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -144,19 +147,24 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jtTabla.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jcbMiembro.addItemListener(new java.awt.event.ItemListener() {
+        jcbEquipoMiembros.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbMiembroItemStateChanged(evt);
+                jcbEquipoMiembrosItemStateChanged(evt);
+            }
+        });
+        jcbEquipoMiembros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEquipoMiembrosActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Seleccionar Miembro");
+        jLabel3.setText("Seleccionar Miembro del Equipo");
 
         jbMostrar.setBackground(new java.awt.Color(0, 0, 0));
         jbMostrar.setForeground(new java.awt.Color(240, 240, 240));
-        jbMostrar.setText("MOSTRAR TODAS LAS TAREAS");
+        jbMostrar.setText("MOSTRAR TODAS LAS TAREAS DEL PROYECTO");
         jbMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMostrarActionPerformed(evt);
@@ -194,6 +202,19 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             }
         });
 
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jbMostrarProyectos.setBackground(new java.awt.Color(0, 0, 0));
+        jbMostrarProyectos.setForeground(new java.awt.Color(240, 240, 240));
+        jbMostrarProyectos.setText("MOSTRAR TODOS LOS PROYECTOS");
+        jbMostrarProyectos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMostrarProyectosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,50 +227,57 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jcbMiembro, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcbProyecto, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jrbCompletada)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jrbProgreso)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jrbPendiente)))
-                                .addGap(112, 112, 112))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbMostrar)
-                                .addGap(156, 156, 156))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jrbProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jrbPendiente))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSeparator2)
+                                    .addComponent(jSeparator3)
+                                    .addComponent(jcbProyecto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcbEquipoMiembros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbMostrarProyectos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(112, 112, 112))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jcbProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbMostrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jcbMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbEquipoMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbCompletada)
                     .addComponent(jrbPendiente)
-                    .addComponent(jrbProgreso))
+                    .addComponent(jrbProgreso)
+                    .addComponent(jrbCompletada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addComponent(jbMostrarProyectos)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -259,11 +287,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
         // TODO add your handling code here:
+        armarModelo();
         if (jrbCompletada.isSelected()) {
             jrbCompletada.setSelected(true);
             jrbProgreso.setSelected(false);
             jrbPendiente.setSelected(false);
-            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
             for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
                 if (t.getEstado() == 0) {
@@ -275,11 +304,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
         // TODO add your handling code here:
+        armarModelo();
         if (jrbProgreso.isSelected()) {
             jrbCompletada.setSelected(false);
             jrbProgreso.setSelected(true);
             jrbPendiente.setSelected(false);
-            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
             for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
                 if (t.getEstado() == 1) {
@@ -291,11 +321,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
         // TODO add your handling code here:
+        armarModelo();
         if (jrbPendiente.isSelected()) {
             jrbCompletada.setSelected(false);
             jrbProgreso.setSelected(false);
             jrbPendiente.setSelected(true);
-            Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+            Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
             for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
                 if (t.getEstado() == 2) {
@@ -307,21 +338,24 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jcbProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbProyectoItemStateChanged
         // TODO add your handling code here:
+        armarModelo();
         tabla.setRowCount(0);
         cargarMiembro();
     }//GEN-LAST:event_jcbProyectoItemStateChanged
 
-    private void jcbMiembroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMiembroItemStateChanged
+    private void jcbEquipoMiembrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbEquipoMiembrosItemStateChanged
         // TODO add your handling code here:
-        Miembro miembro = (Miembro) jcbMiembro.getSelectedItem();
+        Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
+        armarModelo();
         tabla.setRowCount(0);
-        for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
             tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
 
         }
-    }//GEN-LAST:event_jcbMiembroItemStateChanged
+    }//GEN-LAST:event_jcbEquipoMiembrosItemStateChanged
 
     private void jbMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarActionPerformed
+        armarModelo();
         tabla.setRowCount(0);
         Proyecto proyect = (Proyecto) jcbProyecto.getSelectedItem();
         for (Tarea t : datatarea.listarTareasPorProyecto(proyect.getIdProyecto())) {
@@ -332,6 +366,26 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbMostrarProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarProyectosActionPerformed
+        // TODO add your handling code here:
+        armarModelo2();
+        tabla.setRowCount(0);
+        for (Proyecto p : dataproyecto.consultarProyectos()) {
+            tabla.addRow(new Object[]{p.getNombre(),dataequipomiembros.listarMiembrosPorProyecto(p.getIdProyecto()),p.getFechaInicio(),p.getDescripcion()});
+        }
+    }//GEN-LAST:event_jbMostrarProyectosActionPerformed
+
+    private void jcbEquipoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEquipoMiembrosActionPerformed
+        // TODO add your handling code here:
+        Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
+        armarModelo();
+        tabla.setRowCount(0);
+        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+            tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
+
+        }
+    }//GEN-LAST:event_jcbEquipoMiembrosActionPerformed
     private void cargarProyecto() {
         DefaultComboBoxModel<Proyecto> cbox = new DefaultComboBoxModel();
         jcbProyecto.setModel(cbox);
@@ -341,19 +395,33 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     }
 
     private void cargarMiembro() {
-        DefaultComboBoxModel<Miembro> cbox = new DefaultComboBoxModel();
-        jcbMiembro.setModel(cbox);
-        for (Miembro emiem : dataequipomiembros.listarMiembrosPorProyecto(((Proyecto) jcbProyecto.getSelectedItem()).getIdProyecto())) {
-            jcbMiembro.addItem(emiem);
+        DefaultComboBoxModel<EquipoMiembros> cbox = new DefaultComboBoxModel();
+        jcbEquipoMiembros.setModel(cbox);
+        for (EquipoMiembros equipmiemb : dataequipomiembros.listarEquipoMiembrosPorProyecto(((Proyecto) jcbProyecto.getSelectedItem()).getIdProyecto())) {
+            jcbEquipoMiembros.addItem(equipmiemb);
         }
     }
 
     private void armarModelo() {
+        tabla.setColumnCount(0);
         ArrayList titulos = new ArrayList();
         titulos.add("TAREAS");
         titulos.add("MIEMBROS");
         titulos.add("FECHA INICIO");
         titulos.add("FECHA CIERRE");
+        for (Object titulo : titulos) {
+            tabla.addColumn(titulo);
+        }
+        jtTabla.setModel(tabla);
+    }
+
+    private void armarModelo2() {
+        tabla.setColumnCount(0);
+        ArrayList titulos = new ArrayList();
+        titulos.add("NOMBRE");
+        titulos.add("MIEMBROS");
+        titulos.add("FECHA INICIO");
+        titulos.add("DESCRIPCION");
         for (Object titulo : titulos) {
             tabla.addColumn(titulo);
         }
@@ -367,9 +435,12 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton jbMostrar;
+    private javax.swing.JButton jbMostrarProyectos;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<Miembro> jcbMiembro;
+    private javax.swing.JComboBox<EquipoMiembros> jcbEquipoMiembros;
     private javax.swing.JComboBox<Proyecto> jcbProyecto;
     private javax.swing.JRadioButton jrbCompletada;
     private javax.swing.JRadioButton jrbPendiente;
