@@ -59,6 +59,7 @@ public class MenuView extends javax.swing.JFrame {
         jmActualizarEstado = new javax.swing.JMenu();
         jmAsignarTarea = new javax.swing.JMenuItem();
         jmActualizarTarea = new javax.swing.JMenuItem();
+        jmConsultarAvance = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -154,6 +155,14 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmActualizarEstado.add(jmActualizarTarea);
 
+        jmConsultarAvance.setText("Consultar Avances");
+        jmConsultarAvance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmConsultarAvanceActionPerformed(evt);
+            }
+        });
+        jmActualizarEstado.add(jmConsultarAvance);
+
         jMenuBar2.add(jmActualizarEstado);
 
         setJMenuBar(jMenuBar2);
@@ -236,6 +245,14 @@ public class MenuView extends javax.swing.JFrame {
         centrar(cev);
     }//GEN-LAST:event_jmConsultarEquipoActionPerformed
 
+    private void jmConsultarAvanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmConsultarAvanceActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ConsultarAvancesTareaView catv = new ConsultarAvancesTareaView();
+        centrar(catv);
+    }//GEN-LAST:event_jmConsultarAvanceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -281,6 +298,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmActualizarTarea;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
+    private javax.swing.JMenuItem jmConsultarAvance;
     private javax.swing.JMenuItem jmConsultarEquipo;
     private javax.swing.JMenuItem jmConsultarProyecto;
     private javax.swing.JMenuItem jmCrearEquipo;
