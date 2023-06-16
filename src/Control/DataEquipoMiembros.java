@@ -192,6 +192,7 @@ public class DataEquipoMiembros {
         }
         return equipomiembros;
     }
+
     public List<EquipoMiembros> listarEquipoMiembrosPorProyecto(int idProyecto) {
 
         List<EquipoMiembros> equipomiembros = new ArrayList<>();
