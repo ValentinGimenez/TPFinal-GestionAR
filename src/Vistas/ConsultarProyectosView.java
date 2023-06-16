@@ -294,7 +294,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(false);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
                 if (t.getEstado() == 0) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -311,7 +311,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(false);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
                 if (t.getEstado() == 1) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -328,7 +328,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(true);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorMiembro(miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
                 if (t.getEstado() == 2) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -378,6 +378,9 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
 
     private void jcbEquipoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEquipoMiembrosActionPerformed
         // TODO add your handling code here:
+        jrbCompletada.setSelected(false);
+        jrbProgreso.setSelected(false);
+        jrbPendiente.setSelected(false);
         Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
         armarModelo();
         tabla.setRowCount(0);
