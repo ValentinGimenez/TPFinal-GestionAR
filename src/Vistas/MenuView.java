@@ -50,6 +50,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jmCrearProyecto = new javax.swing.JMenuItem();
         jmConsultarProyecto = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmCrearEquipo = new javax.swing.JMenuItem();
         jmAsignarMiembro = new javax.swing.JMenuItem();
@@ -95,6 +96,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jmConsultarProyecto);
+
+        jMenuItem2.setText("Modificar Proyecto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem2);
 
         jMenuBar2.add(jMenu6);
 
@@ -270,6 +279,14 @@ public class MenuView extends javax.swing.JFrame {
         centrar(mtv);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ModificarProyectoView mpw = new ModificarProyectoView();
+        centrar(mpw);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,6 +329,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu jmActualizarEstado;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;

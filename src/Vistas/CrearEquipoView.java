@@ -216,7 +216,6 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
         }
-
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
