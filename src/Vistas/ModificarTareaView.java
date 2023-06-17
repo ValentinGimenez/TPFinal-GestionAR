@@ -151,12 +151,27 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         jLabel6.setText("Seleccionar Tarea");
 
         jrbPendiente.setText("Pendiente");
+        jrbPendiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbPendienteActionPerformed(evt);
+            }
+        });
 
         jrbProgreso.setText("En Progreso");
         jrbProgreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jrbProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbProgresoActionPerformed(evt);
+            }
+        });
 
         jrbCompletada.setText("Completada");
         jrbCompletada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jrbCompletada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbCompletadaActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -205,7 +220,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcbTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(3, 3, 3)
                 .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,12 +279,22 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 return;
             } 
             Tarea tarea = (Tarea)jcbTarea.getSelectedItem();
+                   
+            if(jrbCompletada.isSelected()){
+                tarea.setEstado(0);
+            } else if(jrbProgreso.isSelected()){
+                tarea.setEstado(1);
+            } else if(jrbPendiente.isSelected()){
+                tarea.setEstado(2);
+            }
+            
             tarea.setFechaCreacion(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             tarea.setNombre(nombre);
-            //EquipoMiembros result = dataequipomiembros.buscarEquipoMiembros(tarea.getEquipomiembros().getIdMiembroEq());
             tarea.setEquipomiembros(tarea.getEquipomiembros());            
+            //tarea.setEstado(tarea.getEstado)
             datatarea.modificarTarea(tarea);
+            JOptionPane.showMessageDialog(this, "Tarea modificada correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }
@@ -282,7 +307,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
 
     private void jcbTareaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTareaItemStateChanged
         // TODO add your handling code here:
-        tarea= ((Tarea) jcbTarea.getSelectedItem());
+        tarea = ((Tarea) jcbTarea.getSelectedItem());
         switch (tarea.getEstado()) {
             case 0:
                 jrbCompletada.setSelected(true);
@@ -305,6 +330,34 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         jdcFechaInicio.setDate(Date.from(tarea.getFechaCreacion().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
         jdcFechaCierre.setDate(Date.from(tarea.getFechaCierre().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
     }//GEN-LAST:event_jcbTareaItemStateChanged
+
+    private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
+
+        if(jrbCompletada.isSelected()){
+                jrbCompletada.setSelected(true);
+                jrbProgreso.setSelected(false);
+                jrbPendiente.setSelected(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbCompletadaActionPerformed
+
+    private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
+        if(jrbProgreso.isSelected()){
+                jrbCompletada.setSelected(false);
+                jrbProgreso.setSelected(true);
+                jrbPendiente.setSelected(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbProgresoActionPerformed
+
+    private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
+        // TODO add your handling code here:
+        if(jrbPendiente.isSelected()){
+                jrbCompletada.setSelected(false);
+                jrbProgreso.setSelected(false);
+                jrbPendiente.setSelected(true);
+            }
+    }//GEN-LAST:event_jrbPendienteActionPerformed
     private void cargarTarea() {
         DefaultComboBoxModel<Tarea> cbox = new DefaultComboBoxModel();
         jcbTarea.setModel(cbox);
