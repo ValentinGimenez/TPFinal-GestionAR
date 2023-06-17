@@ -28,7 +28,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
 
     public ModificarEquipoView() {
         initComponents();
-        cargarProyecto();
+        cargarEquipo();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
         jdcFechaInicio = new com.toedter.calendar.JDateChooser();
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jcbProyecto = new javax.swing.JComboBox<>();
+        jcbEquipo = new javax.swing.JComboBox<>();
 
         setTitle("Modificar Equipo");
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -87,7 +87,8 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel2.setText("Seleccionar Proyecto");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Seleccionar Equipo");
 
         jtNombre.setBackground(new java.awt.Color(240, 240, 240));
         jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -119,6 +120,17 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbEquipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbEquipoItemStateChanged(evt);
+            }
+        });
+        jcbEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEquipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,18 +149,17 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
                                 .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(110, 110, 110))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jcbProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))
                             .addContainerGap()))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(224, 224, 224))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(150, 150, 150))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +173,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jLabel2)
                 .addGap(45, 45, 45)
-                .addComponent(jcbProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -189,8 +200,8 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
 
         String nombre = jtNombre.getText();
         Date date = jdcFechaInicio.getDate();
-        if (jcbProyecto.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Debe crear un proyecto primero.");
+        if (jcbEquipo.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Debe crear un equipo primero.");
         } else if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
             return;
@@ -199,28 +210,37 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
             return;
         } else {
             LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if (((Proyecto) jcbProyecto.getSelectedItem()).getFechaInicio().isAfter(fecha)) {
+            if (((Equipo) jcbEquipo.getSelectedItem()).getProyecto().getFechaInicio().isAfter(fecha)) {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio del equipo no puede ser anterior a la fecha de inicio del proyecto.");
                 return;
             }
-            equipo = new Equipo((Proyecto) jcbProyecto.getSelectedItem(), nombre, fecha, 1);
-            dataequipo.guardarEquipo(equipo);
+            equipo = new Equipo(((Equipo) jcbEquipo.getSelectedItem()).getProyecto(),((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), nombre, fecha, 1);
+            dataequipo.modificarEquipo(equipo);
             limpiarCampos();
             jtNombre.requestFocus();
         }
 
     }//GEN-LAST:event_jbModificarActionPerformed
-    private void cargarProyecto() {
-        DefaultComboBoxModel<Proyecto> cbox = new DefaultComboBoxModel();
-        jcbProyecto.setModel(cbox);
-        for (Proyecto proy : dataproyecto.consultarProyectos()) {
-            jcbProyecto.addItem(proy);
+    private void cargarEquipo() {
+        DefaultComboBoxModel<Equipo> cbox = new DefaultComboBoxModel();
+        jcbEquipo.setModel(cbox);
+        for (Equipo equip : dataequipo.listarEquipos()) {
+            jcbEquipo.addItem(equip);
         }
-
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jcbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEquipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEquipoActionPerformed
+
+    private void jcbEquipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbEquipoItemStateChanged
+        // TODO add your handling code here:
+        jdcFechaInicio.setDate(Date.from(((Equipo) jcbEquipo.getSelectedItem()).getFechaCreacion().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+        jtNombre.setText(((Equipo) jcbEquipo.getSelectedItem()).getNombre());
+    }//GEN-LAST:event_jcbEquipoItemStateChanged
 
     private void limpiarCampos() {
         jtNombre.setText("");
@@ -238,7 +258,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JComboBox<Proyecto> jcbProyecto;
+    private javax.swing.JComboBox<Equipo> jcbEquipo;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
     private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables

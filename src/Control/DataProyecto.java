@@ -150,7 +150,7 @@ public class DataProyecto {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 
-                JOptionPane.showMessageDialog(null, "Proyecto añadido con exito.");
+                JOptionPane.showMessageDialog(null, "Proyecto actualizado con exito.");
             }
             ps.close();
 

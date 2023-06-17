@@ -139,7 +139,7 @@ public class DataEquipo {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Equipo añadido con exito.");
+                JOptionPane.showMessageDialog(null, "Equipo Actualizado con exito.");
             }
             ps.close();
 
