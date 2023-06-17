@@ -244,33 +244,36 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
 
-//        String nombre = jtNombre.getText();
-//        Date date1 = jdcFechaInicio.getDate();
-//        Date date2 = jdcFechaCierre.getDate();
-//        if (jcbEquipoMiembro.getSelectedItem() == null) {
-//            JOptionPane.showMessageDialog(this, "Debe crear un equipo miembro primero.");
-//        } else if (nombre.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
-//            return;
-//        } else if (date1 == null || date2 == null) {
-//            JOptionPane.showMessageDialog(this, "El campo fecha se encuentra vacio.");
-//            return;
-//        } else {
-//            LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//
-//            if (fecha1.isAfter(fecha2)) {
-//                JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser anterior a la fecha de cierre.");
-//                return;
-//            } else if (((EquipoMiembros) jcbEquipoMiembro.getSelectedItem()).getFechaIncorporacion().isAfter(fecha1)) {
-//                JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha de incorporacion.");
-//                return;
-//            }
-//            tarea = new Tarea((EquipoMiembros) jcbEquipoMiembro.getSelectedItem(), nombre, fecha1, fecha2, 1);
-//            datatarea.guardarTarea(tarea);
-//            limpiarCampos();
-//            jtNombre.requestFocus();
-//        }
+        String nombre = jtNombre.getText();
+        Date date1 = jdcFechaInicio.getDate();
+        Date date2 = jdcFechaCierre.getDate();
+        if (jcbTarea.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Debe crear una tarea primero.");
+        } else if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
+            return;
+        } else if (date1 == null || date2 == null) {
+            JOptionPane.showMessageDialog(this, "El campo fecha se encuentra vacio.");
+            return;
+        } else {
+            LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            if (fecha1.isAfter(fecha2)) {
+                JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser anterior a la fecha de cierre.");
+                return;
+            } 
+            Tarea tarea = (Tarea)jcbTarea.getSelectedItem();
+            tarea.setFechaCreacion(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            tarea.setNombre(nombre);
+            //EquipoMiembros result = dataequipomiembros.buscarEquipoMiembros(tarea.getEquipomiembros().getIdMiembroEq());
+            System.out.println("ID EQUIPO MIEMBRO" + tarea.getEquipomiembros().getIdMiembroEq());
+            tarea.setEquipomiembros(tarea.getEquipomiembros());            
+            datatarea.modificarTarea(tarea);
+            limpiarCampos();
+            jtNombre.requestFocus();
+        }
 
     }//GEN-LAST:event_jbModificarActionPerformed
 
@@ -307,6 +310,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         DefaultComboBoxModel<Tarea> cbox = new DefaultComboBoxModel();
         jcbTarea.setModel(cbox);
         for (Tarea tare : datatarea.consultarTareas()) {
+            System.out.println(tare);
             jcbTarea.addItem(tare);
         }
 

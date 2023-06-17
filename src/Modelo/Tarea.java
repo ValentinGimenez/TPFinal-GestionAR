@@ -91,6 +91,6 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return nombre + " - Fechas: " + fechaCreacion + " - " + fechaCierre;
+        return nombre + " - Fechas: " + fechaCreacion + " - " + fechaCierre + " equipomiembros " + equipomiembros;
     }
 }
