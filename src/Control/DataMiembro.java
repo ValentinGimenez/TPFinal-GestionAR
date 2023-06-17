@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,30 @@ public class DataMiembro {
 
     public DataMiembro() {
         con = Conexion.getConnection();
+    }
+    
+    public List<Miembro> consultarMiembros() {
+
+        List<Miembro> miembros = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM miembro WHERE estado = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Miembro miembro = new Miembro();
+                miembro.setIdMiembro(rs.getInt("idMiembro"));
+                miembro.setNombre(rs.getString("nombre"));
+                miembro.setApellido(rs.getString("apellido"));
+                miembro.setEstado(rs.getInt("estado"));
+                miembro.setDni(rs.getInt("dni"));
+                miembros.add(miembro);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Miembro" + ex.getMessage());
+        }
+        return miembros;
     }
 
     public void guardarMiembro(Miembro miembro) {
