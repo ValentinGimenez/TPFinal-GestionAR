@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Modelo.EquipoMiembros;
 import Modelo.Proyecto;
 import Modelo.Tarea;
 import java.sql.Connection;
@@ -70,7 +71,6 @@ public class DataTarea {
                 tarea.setEstado(rs.getInt("estado"));
                 tarea.setIdTarea(rs.getInt("idTarea"));
                 tarea.setEquipomiembros(dataequipomiembros.buscarEquipoMiembros(rs.getInt("idMiembroEq")));
-
                 tareas.add(tarea);
             }
             ps.close();

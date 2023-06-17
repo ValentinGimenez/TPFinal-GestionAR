@@ -268,7 +268,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             tarea.setNombre(nombre);
             //EquipoMiembros result = dataequipomiembros.buscarEquipoMiembros(tarea.getEquipomiembros().getIdMiembroEq());
-            System.out.println("ID EQUIPO MIEMBRO" + tarea.getEquipomiembros().getIdMiembroEq());
             tarea.setEquipomiembros(tarea.getEquipomiembros());            
             datatarea.modificarTarea(tarea);
             limpiarCampos();
@@ -310,7 +309,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         DefaultComboBoxModel<Tarea> cbox = new DefaultComboBoxModel();
         jcbTarea.setModel(cbox);
         for (Tarea tare : datatarea.consultarTareas()) {
-            System.out.println(tare);
             jcbTarea.addItem(tare);
         }
 

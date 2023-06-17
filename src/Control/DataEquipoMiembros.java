@@ -66,6 +66,7 @@ public class DataEquipoMiembros {
                 equipoMiembros.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
                 equipoMiembros.setMiembro(dataMiembro.buscarMiembro(rs.getInt("idMiembro")));
                 equipoMiembros.setEquipo(dataEquipo.buscarEquipo(rs.getInt("idEquipo")));
+                equipoMiembros.setIdMiembroEq(id);
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro un EquipoMiembro con el id solicitado.");
             }
