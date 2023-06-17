@@ -262,6 +262,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         String nombre = jtNombre.getText();
         Date date1 = jdcFechaInicio.getDate();
         Date date2 = jdcFechaCierre.getDate();
+        
+        tarea = (Tarea)jcbTarea.getSelectedItem();
+        
+        tarea.setEquipomiembros(tarea.getEquipomiembros());
         if (jcbTarea.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Debe crear una tarea primero.");
         } else if (nombre.isEmpty()) {
@@ -277,8 +281,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             if (fecha1.isAfter(fecha2)) {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser anterior a la fecha de cierre.");
                 return;
-            } 
-            Tarea tarea = (Tarea)jcbTarea.getSelectedItem();
+            } else if (tarea.getEquipomiembros().getFechaIncorporacion().isAfter(fecha1)) {
+                JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha de incorporacion.");
+                return;
+            }
                    
             if(jrbCompletada.isSelected()){
                 tarea.setEstado(0);
@@ -288,11 +294,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 tarea.setEstado(2);
             }
             
+            tarea.setNombre(nombre);
             tarea.setFechaCreacion(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            tarea.setNombre(nombre);
-            tarea.setEquipomiembros(tarea.getEquipomiembros());            
-            //tarea.setEstado(tarea.getEstado)
+                        
             datatarea.modificarTarea(tarea);
             JOptionPane.showMessageDialog(this, "Tarea modificada correctamente.");
             limpiarCampos();
