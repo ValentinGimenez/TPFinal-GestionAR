@@ -164,7 +164,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmActualizarEstado.add(jmConsultarAvance);
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Modificar Tarea");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
