@@ -83,7 +83,7 @@ public class DataEquipo {
 
         List<Equipo> equipos = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM equipo WHERE estado = 1";
+            String sql = "SELECT * FROM equipo JOIN proyecto ON equipo.idProyecto = proyecto.idProyecto WHERE proyecto.estado = 1 AND equipo.estado = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

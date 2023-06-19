@@ -192,7 +192,9 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
         DefaultComboBoxModel<Equipo> cbox = new DefaultComboBoxModel();
         jcbEquipo.setModel(cbox);
         for (Equipo equip : dataequipo.listarEquipos()) {
+            //if(equip.getProyecto().getEstado()!=0){
             jcbEquipo.addItem(equip);
+            //}
         }
 
     }
