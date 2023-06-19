@@ -64,6 +64,7 @@ public class MenuView extends javax.swing.JFrame {
         jmRegistrarAvances = new javax.swing.JMenuItem();
         jmConsultarAvance = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMsalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestionAR");
@@ -201,6 +202,14 @@ public class MenuView extends javax.swing.JFrame {
 
         jMenuBar2.add(jmActualizarEstado);
 
+        jMsalir.setText("Salir");
+        jMsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMsalirActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(jMsalir);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -321,6 +330,10 @@ public class MenuView extends javax.swing.JFrame {
         centrar(mev);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMsalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,6 +379,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenu jMsalir;
     private javax.swing.JMenu jmActualizarEstado;
     private javax.swing.JMenuItem jmAsignarMiembro;
     private javax.swing.JMenuItem jmAsignarTarea;
