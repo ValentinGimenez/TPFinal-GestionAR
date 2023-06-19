@@ -219,6 +219,10 @@ public class ConsultarEquiposView extends javax.swing.JInternalFrame {
 
     private void cargarTabla() {
         tabla.setRowCount(0);
+        if(dataequipo.listarEquipos().isEmpty()){
+            dispose();
+            JOptionPane.showMessageDialog(this, "No hay equipos disponibles.");
+        } else {
         for (EquipoMiembros em : dataequipomiembros.listarEquipoMiembrosPorEquipo(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo())) {
             List<Tarea> tareasMiembro = datatarea.consultarTareasPorEquipoyMiembro(((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), em.getMiembro().getIdMiembro());
             String tareas = "";
@@ -226,6 +230,7 @@ public class ConsultarEquiposView extends javax.swing.JInternalFrame {
                 tareas += tarea.getNombre() + "; ";
             }
             tabla.addRow(new Object[]{em.getMiembro().getNombre(), em.getMiembro().getApellido(), em.getMiembro().getDni(), em.getFechaIncorporacion(), tareas});
+        }
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
