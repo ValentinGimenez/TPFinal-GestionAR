@@ -59,7 +59,12 @@ public class DataTarea {
 
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tarea";
+            String sql =    "SELECT t.*, em.*, e.*, p.*\n" +
+                            "FROM tarea t\n" +
+                            "INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq\n" +
+                            "INNER JOIN equipo e ON e.idEquipo = em.idEquipo\n" +
+                            "INNER JOIN proyecto p ON e.idProyecto = p.idProyecto\n" +
+                            "WHERE p.estado = 1 AND e.estado = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

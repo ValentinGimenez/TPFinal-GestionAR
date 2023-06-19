@@ -126,7 +126,7 @@ public class DataEquipoMiembros {
 
         List<EquipoMiembros> equipomiembros = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM equipomiembros";
+            String sql = "SELECT * FROM equipomiembros EM JOIN equipo E ON (EM.idEquipo=E.idEquipo) JOIN proyecto P ON (E.idProyecto=P.idProyecto) WHERE  E.estado = 1 AND P.estado=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
