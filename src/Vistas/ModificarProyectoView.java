@@ -6,6 +6,7 @@
 package Vistas;
 
 import Control.DataProyecto;
+import Modelo.Miembro;
 import Modelo.Proyecto;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -259,6 +260,7 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
             proyecto = new Proyecto(cbProject.getIdProyecto(), nombre, descripcion, fecha, 1);
             dataproyecto.modificarProyecto(proyecto);
             limpiarCampos();
+            cargarProyecto();
             jtNombre.requestFocus();
         }
 
@@ -286,6 +288,10 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
 
     private void jcbProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbProyectoItemStateChanged
         // TODO add your handling code here:
+        Proyecto p = (Proyecto)jcbProyecto.getSelectedItem();
+        jtNombre.setText(p.getNombre());
+        jtDescripcion.setText(p.getDescripcion());
+        jdcFechaInicio.setDate(Date.from(p.getFechaInicio().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
     }//GEN-LAST:event_jcbProyectoItemStateChanged
 
     private void limpiarCampos() {
