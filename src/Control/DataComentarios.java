@@ -83,7 +83,7 @@ public class DataComentarios {
             ps.setInt(4, comentarios.getIdComentario());
             ps.executeUpdate();
             int fila = ps.executeUpdate();
-            
+
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, " Se modifico el comentario.");
             }
