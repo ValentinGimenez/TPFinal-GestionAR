@@ -252,7 +252,6 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
             Proyecto cbProject = (Proyecto) jcbProyecto.getSelectedItem();
             proyecto = new Proyecto(cbProject.getIdProyecto(), nombre, descripcion, fecha, 1);
             dataproyecto.modificarProyecto(proyecto);
-            JOptionPane.showMessageDialog(this, "Proyecto modificado correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }

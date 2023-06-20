@@ -315,7 +315,6 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
             datatarea.modificarTarea(tarea);
-            JOptionPane.showMessageDialog(this, "Tarea modificada correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }

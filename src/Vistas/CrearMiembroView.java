@@ -189,19 +189,19 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
-        String nombre = jtNombre.getText();
-        String apellido = jtApellido.getText();
-        Integer dni = Integer.valueOf(jtDni.getText());
-        if (nombre.isEmpty()) {
+        if (jtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
             return;
-        } else if (apellido.isEmpty()) {
+        } else if (jtApellido.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo apellido se encuentra vacio.");
             return;
         } else if (jtDni.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo dni se encuentra vacio.");
             return;
         } else {
+            String nombre = jtNombre.getText();
+            String apellido = jtApellido.getText();
+            Integer dni = Integer.valueOf(jtDni.getText());
             miembro = new Miembro(dni, apellido, nombre, 1);
             datamiembro.guardarMiembro(miembro);
             limpiarCampos();

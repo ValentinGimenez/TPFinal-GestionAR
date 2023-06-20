@@ -204,13 +204,10 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
 
-        String nombre = jtNombre.getText();
-        String apellido = jtApellido.getText();
-        Integer dni = Integer.valueOf(jtDni.getText());
-        if (nombre.isEmpty()) {
+        if (jtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
             return;
-        } else if (apellido.isEmpty()) {
+        } else if (jtApellido.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo apellido se encuentra vacio.");
             return;
         } else if (jtDni.getText().isEmpty()) {
@@ -218,11 +215,10 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
             return;
         } else {
             miembro = (Miembro) jcbMiembro.getSelectedItem();
-            miembro.setNombre(nombre);
-            miembro.setApellido(apellido);
-            miembro.setDni(dni);
+            miembro.setNombre(jtNombre.getText());
+            miembro.setApellido(jtApellido.getText());
+            miembro.setDni(Integer.valueOf(jtDni.getText()));
             datamiembro.modificarMiembro(miembro);
-            JOptionPane.showMessageDialog(this, "El miembro fue modificado correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }

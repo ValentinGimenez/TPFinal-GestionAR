@@ -227,9 +227,10 @@ public class DataEquipoMiembros {
             ps.setInt(3, equipoMiembros.getMiembro().getIdMiembro());
             ps.setInt(4, equipoMiembros.getIdMiembroEq());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Miembro añadido al equipo con exito.");
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico el equipo miembro.");
             }
             ps.close();
 

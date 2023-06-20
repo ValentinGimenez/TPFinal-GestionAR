@@ -147,10 +147,10 @@ public class DataProyecto {
             ps.setInt(4, proyecto.getEstado());
             ps.setInt(5, proyecto.getIdProyecto());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            int fila = ps.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Proyecto actualizado con exito.");
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico el proyecto.");
             }
             ps.close();
 

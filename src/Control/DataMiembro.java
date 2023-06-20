@@ -136,9 +136,10 @@ public class DataMiembro {
             ps.setInt(4, miembro.getEstado());
             ps.setInt(5, miembro.getIdMiembro());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Miembro añadido con exito.");
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico el miembro.");
             }
             ps.close();
 

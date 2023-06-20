@@ -228,7 +228,6 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
             }
             equipo = new Equipo(((Equipo) jcbEquipo.getSelectedItem()).getProyecto(), ((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), nombre, fecha, 1);
             dataequipo.modificarEquipo(equipo);
-            JOptionPane.showMessageDialog(this, "Equipo modificado correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }

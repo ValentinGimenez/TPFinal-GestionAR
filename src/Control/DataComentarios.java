@@ -82,9 +82,10 @@ public class DataComentarios {
             ps.setInt(3, comentarios.getTarea().getIdTarea());
             ps.setInt(4, comentarios.getIdComentario());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Comentario añadida con exito.");
+            int fila = ps.executeUpdate();
+            
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico el comentario.");
             }
             ps.close();
 

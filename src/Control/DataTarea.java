@@ -210,9 +210,10 @@ public class DataTarea {
             ps.setInt(5, tarea.getEquipomiembros().getIdMiembroEq());
             ps.setInt(6, tarea.getIdTarea());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Tarea actualizada con exito.");
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico la tarea.");
             }
             ps.close();
 

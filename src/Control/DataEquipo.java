@@ -138,9 +138,10 @@ public class DataEquipo {
             ps.setInt(4, equipo.getEstado());
             ps.setInt(5, equipo.getIdEquipo());
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Equipo Actualizado con exito.");
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se modifico el equipo.");
             }
             ps.close();
 
