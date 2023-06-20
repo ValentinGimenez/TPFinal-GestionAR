@@ -89,12 +89,22 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
         jtNombre.setBackground(new java.awt.Color(240, 240, 240));
         jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtNombre.setBorder(null);
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
 
         jtApellido.setBackground(new java.awt.Color(240, 240, 240));
         jtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtApellido.setBorder(null);
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -125,6 +135,11 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
         jtDni.setBackground(new java.awt.Color(240, 240, 240));
         jtDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtDni.setBorder(null);
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setText("Miembro");
@@ -231,6 +246,33 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se admiten numeros.");
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se admiten numeros.");
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se admiten letras en el dni.");
+        }
+    }//GEN-LAST:event_jtDniKeyTyped
 
     private void limpiarCampos() {
         jtNombre.setText("");
