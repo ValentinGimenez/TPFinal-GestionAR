@@ -217,6 +217,9 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
             jtDni.setText("");
             JOptionPane.showMessageDialog(this, "No se admiten espacios en el dni.");
             return;
+        }else if(!validarDni(jtDni.getText())){
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI válido(6 - 8 digitos)");
+            return;
         } else {
             String nombre = jtNombre.getText();
             String apellido = jtApellido.getText();
@@ -264,6 +267,10 @@ public class CrearMiembroView extends javax.swing.JInternalFrame {
         jtNombre.setText("");
         jtApellido.setText("");
         jtDni.setText("");
+    }
+    
+    private boolean validarDni(String dni) {
+        return dni.length() <= 8 && dni.length()>=6;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -213,6 +213,9 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
         } else if (jtDni.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo dni se encuentra vacio.");
             return;
+        }else if(!validarDni(jtDni.getText())){
+            JOptionPane.showMessageDialog(this, "Ingrese un DNI válido(6 - 8 digitos)");
+            return;
         } else {
             miembro = (Miembro) jcbMiembro.getSelectedItem();
             miembro.setNombre(jtNombre.getText());
@@ -242,6 +245,10 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
             jcbMiembro.addItem(miembro);
         }
 
+    }
+    
+    private boolean validarDni(String dni) {
+        return dni.length() <= 8 && dni.length()>=6;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
