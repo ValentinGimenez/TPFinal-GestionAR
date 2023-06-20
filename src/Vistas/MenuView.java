@@ -203,6 +203,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar2.add(jmActualizarEstado);
 
         jMsalir.setText("Salir");
+        jMsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMsalirMouseClicked(evt);
+            }
+        });
         jMsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMsalirActionPerformed(evt);
@@ -331,8 +336,13 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jMsalirActionPerformed
+
+    private void jMsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMsalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMsalirMouseClicked
 
     /**
      * @param args the command line arguments

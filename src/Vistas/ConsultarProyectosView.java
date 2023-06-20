@@ -294,7 +294,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(false);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(), miembro.getIdMiembro())) {
                 if (t.getEstado() == 0) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -311,7 +311,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(false);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(), miembro.getIdMiembro())) {
                 if (t.getEstado() == 1) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -328,7 +328,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
             jrbPendiente.setSelected(true);
             Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
             tabla.setRowCount(0);
-            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+            for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(), miembro.getIdMiembro())) {
                 if (t.getEstado() == 2) {
                     tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
                 }
@@ -348,7 +348,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
         armarModelo();
         tabla.setRowCount(0);
-        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(), miembro.getIdMiembro())) {
             tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
 
         }
@@ -372,7 +372,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         armarModelo2();
         tabla.setRowCount(0);
         for (Proyecto p : dataproyecto.consultarProyectos()) {
-            tabla.addRow(new Object[]{p.getNombre(),dataequipomiembros.listarMiembrosPorProyecto(p.getIdProyecto()),p.getFechaInicio(),p.getDescripcion()});
+            tabla.addRow(new Object[]{p.getNombre(), dataequipomiembros.listarMiembrosPorProyecto(p.getIdProyecto()), p.getFechaInicio(), p.getDescripcion()});
         }
     }//GEN-LAST:event_jbMostrarProyectosActionPerformed
 
@@ -384,7 +384,7 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         Miembro miembro = ((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getMiembro();
         armarModelo();
         tabla.setRowCount(0);
-        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(),miembro.getIdMiembro())) {
+        for (Tarea t : datatarea.consultarTareasPorEquipoyMiembro(((EquipoMiembros) jcbEquipoMiembros.getSelectedItem()).getEquipo().getIdEquipo(), miembro.getIdMiembro())) {
             tabla.addRow(new Object[]{t.getNombre(), t.getEquipomiembros().getMiembro(), t.getFechaCreacion(), t.getFechaCierre()});
 
         }

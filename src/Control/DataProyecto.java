@@ -149,7 +149,7 @@ public class DataProyecto {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                
+
                 JOptionPane.showMessageDialog(null, "Proyecto actualizado con exito.");
             }
             ps.close();

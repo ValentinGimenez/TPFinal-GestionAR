@@ -240,7 +240,7 @@ public class RegistrarAvancesTareaView extends javax.swing.JInternalFrame {
             if (((Tarea) jcbTarea.getSelectedItem()).getFechaCreacion().isAfter(fecha)) {
                 JOptionPane.showMessageDialog(this, "La fecha de avance no puede ser anterior a la fecha de inicio.");
                 return;
-            }else if (((Tarea) jcbTarea.getSelectedItem()).getFechaCierre().isBefore(fecha)) {
+            } else if (((Tarea) jcbTarea.getSelectedItem()).getFechaCierre().isBefore(fecha)) {
                 JOptionPane.showMessageDialog(this, "La fecha de avance no puede ser luego de la fecha de cierre.");
                 return;
             }

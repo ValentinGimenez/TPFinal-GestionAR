@@ -59,12 +59,12 @@ public class DataTarea {
 
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql =    "SELECT t.*, em.*, e.*, p.*\n" +
-                            "FROM tarea t\n" +
-                            "INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq\n" +
-                            "INNER JOIN equipo e ON e.idEquipo = em.idEquipo\n" +
-                            "INNER JOIN proyecto p ON e.idProyecto = p.idProyecto\n" +
-                            "WHERE p.estado = 1 AND e.estado = 1";
+            String sql = "SELECT t.*, em.*, e.*, p.*\n"
+                    + "FROM tarea t\n"
+                    + "INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq\n"
+                    + "INNER JOIN equipo e ON e.idEquipo = em.idEquipo\n"
+                    + "INNER JOIN proyecto p ON e.idProyecto = p.idProyecto\n"
+                    + "WHERE p.estado = 1 AND e.estado = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -203,7 +203,8 @@ public class DataTarea {
         }
         return tareas;
     }
-     public void modificarTarea(Tarea tarea) {
+
+    public void modificarTarea(Tarea tarea) {
         String sql = "UPDATE tarea SET nombre = ?, fechaCreacion = ?, fechaCierre = ?, estado = ?, idMiembroEq = ? WHERE idTarea = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -212,7 +213,7 @@ public class DataTarea {
             ps.setDate(3, Date.valueOf(tarea.getFechaCierre()));
             ps.setInt(4, tarea.getEstado());
             ps.setInt(5, tarea.getEquipomiembros().getIdMiembroEq());
-            ps.setInt(6,tarea.getIdTarea());
+            ps.setInt(6, tarea.getIdTarea());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

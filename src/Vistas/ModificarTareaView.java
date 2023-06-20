@@ -262,9 +262,9 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         String nombre = jtNombre.getText();
         Date date1 = jdcFechaInicio.getDate();
         Date date2 = jdcFechaCierre.getDate();
-        
-        tarea = (Tarea)jcbTarea.getSelectedItem();
-        
+
+        tarea = (Tarea) jcbTarea.getSelectedItem();
+
         tarea.setEquipomiembros(tarea.getEquipomiembros());
         if (jcbTarea.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Debe crear una tarea primero.");
@@ -285,19 +285,19 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser anterior a la fecha de incorporacion.");
                 return;
             }
-                   
-            if(jrbCompletada.isSelected()){
+
+            if (jrbCompletada.isSelected()) {
                 tarea.setEstado(0);
-            } else if(jrbProgreso.isSelected()){
+            } else if (jrbProgreso.isSelected()) {
                 tarea.setEstado(1);
-            } else if(jrbPendiente.isSelected()){
+            } else if (jrbPendiente.isSelected()) {
                 tarea.setEstado(2);
             }
-            
+
             tarea.setNombre(nombre);
             tarea.setFechaCreacion(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             tarea.setFechaCierre(date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                        
+
             datatarea.modificarTarea(tarea);
             JOptionPane.showMessageDialog(this, "Tarea modificada correctamente.");
             limpiarCampos();
@@ -338,30 +338,30 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
 
     private void jrbCompletadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCompletadaActionPerformed
 
-        if(jrbCompletada.isSelected()){
-                jrbCompletada.setSelected(true);
-                jrbProgreso.setSelected(false);
-                jrbPendiente.setSelected(false);
+        if (jrbCompletada.isSelected()) {
+            jrbCompletada.setSelected(true);
+            jrbProgreso.setSelected(false);
+            jrbPendiente.setSelected(false);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jrbCompletadaActionPerformed
 
     private void jrbProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbProgresoActionPerformed
-        if(jrbProgreso.isSelected()){
-                jrbCompletada.setSelected(false);
-                jrbProgreso.setSelected(true);
-                jrbPendiente.setSelected(false);
+        if (jrbProgreso.isSelected()) {
+            jrbCompletada.setSelected(false);
+            jrbProgreso.setSelected(true);
+            jrbPendiente.setSelected(false);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jrbProgresoActionPerformed
 
     private void jrbPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPendienteActionPerformed
         // TODO add your handling code here:
-        if(jrbPendiente.isSelected()){
-                jrbCompletada.setSelected(false);
-                jrbProgreso.setSelected(false);
-                jrbPendiente.setSelected(true);
-            }
+        if (jrbPendiente.isSelected()) {
+            jrbCompletada.setSelected(false);
+            jrbProgreso.setSelected(false);
+            jrbPendiente.setSelected(true);
+        }
     }//GEN-LAST:event_jrbPendienteActionPerformed
     private void cargarTarea() {
         DefaultComboBoxModel<Tarea> cbox = new DefaultComboBoxModel();

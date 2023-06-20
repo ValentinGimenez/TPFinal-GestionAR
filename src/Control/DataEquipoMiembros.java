@@ -217,7 +217,8 @@ public class DataEquipoMiembros {
         }
         return equipomiembros;
     }
-     public void modificarEquipoMiembros(EquipoMiembros equipoMiembros) {
+
+    public void modificarEquipoMiembros(EquipoMiembros equipoMiembros) {
         String sql = "UPDATE equipoMiembros SET fechaIncorporacion = ?, idEquipo = ?, idMiembro = ? WHERE idMiembroEq = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

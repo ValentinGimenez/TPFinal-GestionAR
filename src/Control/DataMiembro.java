@@ -28,7 +28,7 @@ public class DataMiembro {
     public DataMiembro() {
         con = Conexion.getConnection();
     }
-    
+
     public List<Miembro> consultarMiembros() {
 
         List<Miembro> miembros = new ArrayList<>();
@@ -125,6 +125,7 @@ public class DataMiembro {
         }
         return null;
     }
+
     public void modificarMiembro(Miembro miembro) {
         String sql = "UPDATE miembro SET dni = ?, apellido = ?, nombre = ?, estado = ? WHERE idMiembro = ?";
         try {

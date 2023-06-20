@@ -127,6 +127,7 @@ public class DataEquipo {
         }
         return equipos;
     }
+
     public void modificarEquipo(Equipo equipo) {
         String sql = "UPDATE equipo SET idProyecto = ?, nombre = ?, fechaCreacion = ?, estado = ? WHERE idEquipo = ?";
         try {

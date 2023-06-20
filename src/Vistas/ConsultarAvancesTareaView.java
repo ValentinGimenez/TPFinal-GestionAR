@@ -329,7 +329,7 @@ public class ConsultarAvancesTareaView extends javax.swing.JInternalFrame {
 
     private void jcbTareaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTareaItemStateChanged
         // TODO add your handling code here:
-        tarea= ((Tarea) jcbTarea.getSelectedItem());
+        tarea = ((Tarea) jcbTarea.getSelectedItem());
         switch (tarea.getEstado()) {
             case 0:
                 jtEstado.setText("COMPLETADA");
@@ -353,7 +353,7 @@ public class ConsultarAvancesTareaView extends javax.swing.JInternalFrame {
         StringBuilder sb = new StringBuilder();
 
         for (Comentarios comentario : comentarios) {
-            sb.append("Avance: " +comentario.getFechaAvance()+" | "+comentario.getComentario());
+            sb.append("Avance: " + comentario.getFechaAvance() + " | " + comentario.getComentario());
             sb.append(System.lineSeparator());
         }
 

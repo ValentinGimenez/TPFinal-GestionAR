@@ -217,7 +217,7 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo dni se encuentra vacio.");
             return;
         } else {
-            miembro = (Miembro)jcbMiembro.getSelectedItem();
+            miembro = (Miembro) jcbMiembro.getSelectedItem();
             miembro.setNombre(nombre);
             miembro.setApellido(apellido);
             miembro.setDni(dni);
@@ -238,8 +238,8 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
         jtApellido.setText("");
         jtDni.setText("");
     }
-    
-     private void cargarMiembros() {
+
+    private void cargarMiembros() {
         DefaultComboBoxModel<Miembro> cbox = new DefaultComboBoxModel();
         jcbMiembro.setModel(cbox);
         for (Miembro miembro : datamiembro.consultarMiembros()) {

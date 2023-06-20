@@ -72,6 +72,7 @@ public class DataComentarios {
         }
         return comentarios;
     }
+
     public void modificarComentario(Comentarios comentarios) {
         String sql = "UPDATE comentarios SET comentario = ?, fechaAvance = ?, idTarea = ? WHERE idComentario = ?";
         try {

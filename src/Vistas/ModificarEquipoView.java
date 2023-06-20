@@ -97,6 +97,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nombre");
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
@@ -151,15 +152,12 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcbEquipo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 300, Short.MAX_VALUE)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(224, 224, 224))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,9 +212,9 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La fecha de inicio del equipo no puede ser anterior a la fecha de inicio del proyecto.");
                 return;
             }
-            equipo = new Equipo(((Equipo) jcbEquipo.getSelectedItem()).getProyecto(),((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), nombre, fecha, 1);
+            equipo = new Equipo(((Equipo) jcbEquipo.getSelectedItem()).getProyecto(), ((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), nombre, fecha, 1);
             dataequipo.modificarEquipo(equipo);
-            JOptionPane.showMessageDialog(this, "Equipo modificado correctamente."); 
+            JOptionPane.showMessageDialog(this, "Equipo modificado correctamente.");
             limpiarCampos();
             jtNombre.requestFocus();
         }
