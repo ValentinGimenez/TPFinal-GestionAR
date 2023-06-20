@@ -142,6 +142,12 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbProyecto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbProyectoItemStateChanged(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Proyecto");
@@ -277,6 +283,10 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
         limpiarCampos();
         cargarProyecto();
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jcbProyectoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbProyectoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbProyectoItemStateChanged
 
     private void limpiarCampos() {
         jtNombre.setText("");

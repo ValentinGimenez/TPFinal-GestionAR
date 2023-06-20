@@ -316,6 +316,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
 
             datatarea.modificarTarea(tarea);
             limpiarCampos();
+            cargarTarea();
             jtNombre.requestFocus();
         }
 
@@ -347,6 +348,7 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
             default:
                 break;
         }
+        jtNombre.setText(((Tarea)jcbTarea.getSelectedItem()).getNombre());
         jdcFechaInicio.setDate(Date.from(tarea.getFechaCreacion().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
         jdcFechaCierre.setDate(Date.from(tarea.getFechaCierre().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
     }//GEN-LAST:event_jcbTareaItemStateChanged

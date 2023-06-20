@@ -141,6 +141,12 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbMiembro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbMiembroItemStateChanged(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setText("Miembro");
 
@@ -218,7 +224,8 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-
+        
+        
         if (jtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo nombre se encuentra vacio.");
             return;
@@ -273,6 +280,14 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No se admiten letras en el dni.");
         }
     }//GEN-LAST:event_jtDniKeyTyped
+
+    private void jcbMiembroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMiembroItemStateChanged
+        // TODO add your handling code here:
+        Miembro m = (Miembro)jcbMiembro.getSelectedItem();
+        jtNombre.setText(m.getNombre());
+        jtApellido.setText(m.getApellido());
+        jtDni.setText(Integer.toString(m.getDni()));
+    }//GEN-LAST:event_jcbMiembroItemStateChanged
 
     private void limpiarCampos() {
         jtNombre.setText("");
