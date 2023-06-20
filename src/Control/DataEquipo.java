@@ -147,6 +147,24 @@ public class DataEquipo {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
         }
-
     }
+    
+    public void eliminarEquipo(int id) {
+
+        try {
+            String sql = "UPDATE equipo SET estado = 0 WHERE idEquipo = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó el equipo");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Equipo");
+        }
+    }
+    
+    
 }
