@@ -18,7 +18,7 @@ public class Tarea {
     private String nombre;
     private LocalDate fechaCreacion;
     private LocalDate fechaCierre;
-    private int estado;//3 estados,0 completadas, 1 en progreso, 2 pendiente
+    private int estado;//4 estados,0 completadas, 1 en progreso, 2 pendiente, 3 inactiva
 
     public Tarea() {
 

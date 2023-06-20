@@ -59,12 +59,7 @@ public class DataTarea {
 
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql = "SELECT t.*, em.*, e.*, p.*\n"
-                    + "FROM tarea t\n"
-                    + "INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq\n"
-                    + "INNER JOIN equipo e ON e.idEquipo = em.idEquipo\n"
-                    + "INNER JOIN proyecto p ON e.idProyecto = p.idProyecto\n"
-                    + "WHERE p.estado = 1 AND e.estado = 1";
+            String sql =" SELECT t.*, em.*, e.*, p.* FROM tarea t INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq INNER JOIN equipo e ON e.idEquipo = em.idEquipo INNER JOIN proyecto p ON e.idProyecto = p.idProyecto WHERE p.estado = 1 AND e.estado = 1 and t.estado != 3";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -224,6 +219,23 @@ public class DataTarea {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
         }
-
     }
+    
+    public void eliminarTarea(int id) {
+
+        try {
+            String sql = "UPDATE tarea SET estado = 3 WHERE idTarea = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó la tarea");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Tarea" + e.getMessage());
+        }
+    }
+    
 }
