@@ -216,6 +216,12 @@ public class CrearEquipoView extends javax.swing.JInternalFrame {
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
         }
+        if(jcbProyecto.getSelectedItem() == null){
+            jtNombre.setEnabled(false);
+            jdcFechaInicio.setEnabled(false);
+            jbGuardar.setEnabled(false);
+            
+        }
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
