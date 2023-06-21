@@ -176,7 +176,7 @@ public class DataTarea {
     public List<Tarea> consultarTareasPorEquipoyMiembro(int idEquipo, int idMiembro) {
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql = "SELECT T.* FROM tarea T JOIN equipomiembros EM ON T.idMiembroEq = EM.idMiembroEq WHERE EM.idEquipo = ? AND EM.idMiembro = ?";
+            String sql = "SELECT T.* FROM tarea T JOIN equipomiembros EM ON T.idMiembroEq = EM.idMiembroEq WHERE EM.idEquipo = ? AND EM.idMiembro = ? AND T.estado != 3";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idEquipo);
             ps.setInt(2, idMiembro);
