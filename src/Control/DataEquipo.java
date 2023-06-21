@@ -149,7 +149,7 @@ public class DataEquipo {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
         }
     }
-    
+
     public void eliminarEquipo(int id) {
 
         try {
@@ -166,6 +166,44 @@ public class DataEquipo {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Equipo");
         }
     }
-    
-    
+    public void activarEquipo(int id) {
+
+        try {
+            String sql = "UPDATE equipo SET estado = 1 WHERE idEquipo = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se activo el equipo.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Equipo");
+        }
+    }
+
+    public List<Equipo> listarEquiposInactivos() {
+
+        List<Equipo> equipos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM equipo JOIN proyecto ON equipo.idProyecto = proyecto.idProyecto WHERE proyecto.estado = 1 AND equipo.estado = 0";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipo equipo = new Equipo();
+                equipo.setNombre(rs.getString("nombre"));
+                equipo.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                equipo.setEstado(rs.getInt("estado"));
+                equipo.setIdEquipo(rs.getInt("idEquipo"));
+                equipo.setProyecto(dataProyecto.buscarProyecto(rs.getInt("idProyecto")));
+                equipos.add(equipo);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Equipo" + ex.getMessage());
+        }
+        return equipos;
+    }
 }

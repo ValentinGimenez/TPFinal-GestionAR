@@ -238,5 +238,46 @@ public class DataTarea {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Tarea" + e.getMessage());
         }
     }
-    
+    public List<Tarea> listarTareasInactivas() {
+
+        List<Tarea> tareas = new ArrayList<>();
+        try {
+            String sql =" SELECT t.*, em.*, e.*, p.* FROM tarea t INNER JOIN equipomiembros em ON t.idMiembroEq = em.idMiembroEq INNER JOIN equipo e ON e.idEquipo = em.idEquipo INNER JOIN proyecto p ON e.idProyecto = p.idProyecto WHERE p.estado = 1 AND e.estado = 1 and t.estado = 3";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Tarea tarea = new Tarea();
+
+                tarea.setNombre(rs.getString("nombre"));
+                tarea.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                tarea.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                tarea.setEstado(rs.getInt("estado"));
+                tarea.setIdTarea(rs.getInt("idTarea"));
+                tarea.setEquipomiembros(dataequipomiembros.buscarEquipoMiembros(rs.getInt("idMiembroEq")));
+                tareas.add(tarea);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
+        }
+        return tareas;
+    }
+    public void activarTarea(int idTarea) {
+
+        String sql = "UPDATE tarea SET estado = 2 WHERE  idTarea = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idTarea);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se activo la tarea.");
+            } else {
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Tarea" + ex.getMessage());
+        }
+
+    }
 }

@@ -64,6 +64,7 @@ public class MenuView extends javax.swing.JFrame {
         jmRegistrarAvances = new javax.swing.JMenuItem();
         jmConsultarAvance = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMsalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,6 +202,19 @@ public class MenuView extends javax.swing.JFrame {
         jmActualizarEstado.add(jMenuItem1);
 
         jMenuBar2.add(jmActualizarEstado);
+
+        jMenu3.setText("Alta");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(jMenu3);
 
         jMsalir.setText("Salir");
         jMsalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -344,6 +358,19 @@ public class MenuView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMsalirMouseClicked
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ActivarInactivos ai = new ActivarInactivos();
+        centrar(ai);
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +410,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;

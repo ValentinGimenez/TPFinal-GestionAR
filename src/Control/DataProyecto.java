@@ -159,4 +159,28 @@ public class DataProyecto {
         }
 
     }
+    public List<Proyecto> listarProyectosInactivos() {
+
+        List<Proyecto> proyectos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM proyecto WHERE estado = 0";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Proyecto proyecto = new Proyecto();
+
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setDescripcion(rs.getString("descripcion"));
+                proyecto.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                proyecto.setEstado(rs.getInt("estado"));
+                proyecto.setIdProyecto(rs.getInt("idProyecto"));
+                proyectos.add(proyecto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proyecto" + ex.getMessage());
+        }
+        return proyectos;
+    }
 }
