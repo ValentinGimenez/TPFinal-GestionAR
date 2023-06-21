@@ -128,7 +128,7 @@ public class DataTarea {
     public List<Tarea> listarTareasPorProyecto(int idProyecto) {
         List<Tarea> tareas = new ArrayList<>();
         try {
-            String sql = "SELECT T.* FROM tarea T JOIN equipomiembros EM ON T.idMiembroEq = EM.idMiembroEq JOIN equipo E ON EM.idEquipo = E.idEquipo JOIN proyecto P ON E.idProyecto = P.idProyecto WHERE P.idProyecto = ?";
+            String sql = "SELECT T.* FROM tarea T JOIN equipomiembros EM ON T.idMiembroEq = EM.idMiembroEq JOIN equipo E ON EM.idEquipo = E.idEquipo JOIN proyecto P ON E.idProyecto = P.idProyecto WHERE P.idProyecto = ? AND T.estado != 3";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idProyecto);
             ResultSet rs = ps.executeQuery();

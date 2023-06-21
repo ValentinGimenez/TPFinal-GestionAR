@@ -257,7 +257,11 @@ public class RegistrarAvancesTareaView extends javax.swing.JInternalFrame {
         for (Tarea tare : datatarea.consultarTareas()) {
             jcbTarea.addItem(tare);
         }
-
+        if (jcbTarea.getSelectedItem() == null) {
+            jbGuardar.setEnabled(false);
+            jdcFechaAvance.setEnabled(false);
+            jtaComentario.setEnabled(false);
+        }
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
