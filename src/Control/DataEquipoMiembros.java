@@ -198,7 +198,7 @@ public class DataEquipoMiembros {
 
         List<EquipoMiembros> equipomiembros = new ArrayList<>();
         try {
-            String sql = "SELECT EM.* FROM equipomiembros EM INNER JOIN equipo E ON EM.idEquipo = E.idEquipo WHERE E.idProyecto = ?";
+            String sql = "SELECT EM.* FROM equipomiembros EM INNER JOIN equipo E ON EM.idEquipo = E.idEquipo WHERE E.idProyecto = ? AND E.estado=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idProyecto);
             ResultSet rs = ps.executeQuery();
