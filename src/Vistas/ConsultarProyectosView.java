@@ -404,6 +404,14 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
         }
+        if(jcbProyecto.getSelectedItem() == null){
+            jbMostrar.setEnabled(false);
+            jbMostrarProyectos.setEnabled(false);
+            jcbEquipoMiembros.setEnabled(false);
+            jrbProgreso.setEnabled(false);
+            jrbPendiente.setEnabled(false);
+            jrbCompletada.setEnabled(false);
+        }
     }
 
     private void cargarMiembro() {
@@ -411,6 +419,11 @@ public class ConsultarProyectosView extends javax.swing.JInternalFrame {
         jcbEquipoMiembros.setModel(cbox);
         for (EquipoMiembros equipmiemb : dataequipomiembros.listarEquipoMiembrosPorProyecto(((Proyecto) jcbProyecto.getSelectedItem()).getIdProyecto())) {
             jcbEquipoMiembros.addItem(equipmiemb);
+        }
+        if(jcbEquipoMiembros.getSelectedItem() == null){
+            jrbProgreso.setEnabled(false);
+            jrbPendiente.setEnabled(false);
+            jrbCompletada.setEnabled(false);
         }
     }
 
