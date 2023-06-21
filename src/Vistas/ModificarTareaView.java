@@ -393,7 +393,10 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         for (Tarea tare : datatarea.consultarTareas()) {
             jcbTarea.addItem(tare);
         }
-
+        if (jcbTarea.getSelectedItem() == null) {
+            jbEliminar.setEnabled(false);
+            jbModificar.setEnabled(false);
+        }
     }
 
     private void limpiarCampos() {

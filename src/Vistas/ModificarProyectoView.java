@@ -305,6 +305,10 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
         for (Proyecto proy : dataproyecto.consultarProyectos()) {
             jcbProyecto.addItem(proy);
         }
+        if (jcbProyecto.getSelectedItem() == null) {
+            jbEliminar.setEnabled(false);
+            jbModificar.setEnabled(false);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
