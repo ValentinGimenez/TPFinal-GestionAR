@@ -396,6 +396,12 @@ public class ModificarTareaView extends javax.swing.JInternalFrame {
         if (jcbTarea.getSelectedItem() == null) {
             jbEliminar.setEnabled(false);
             jbModificar.setEnabled(false);
+            jtNombre.setEnabled(false);
+            jdcFechaCierre.setEnabled(false);
+            jdcFechaInicio.setEnabled(false);
+            jrbCompletada.setEnabled(false);
+            jrbPendiente.setEnabled(false);
+            jrbProgreso.setEnabled(false);
         }
     }
 

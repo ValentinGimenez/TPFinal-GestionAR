@@ -244,6 +244,8 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
         if (jcbEquipo.getSelectedItem() == null) {
             jbEliminar.setEnabled(false);
             jbModificar.setEnabled(false);
+            jtNombre.setEnabled(false);
+            jdcFechaInicio.setEnabled(false);
         }
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

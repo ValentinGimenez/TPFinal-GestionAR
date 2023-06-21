@@ -99,7 +99,7 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Seleccionar Equipo Miembro");
+        jLabel2.setText("Seleccionar Miembro del Equipo");
 
         jtNombre.setBackground(new java.awt.Color(240, 240, 240));
         jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -197,7 +197,7 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
                 .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(19, 19, 19)
                 .addComponent(jdcFechaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,6 +249,12 @@ public class AsignarTareaView extends javax.swing.JInternalFrame {
         jcbEquipoMiembro.setModel(cbox);
         for (EquipoMiembros emiem : dataequipomiembros.listarEquipoMiembros()) {
             jcbEquipoMiembro.addItem(emiem);
+        }
+        if(jcbEquipoMiembro.getSelectedItem() == null){
+            jtNombre.setEnabled(false);
+            jdcFechaCierre.setEnabled(false);
+            jdcFechaInicio.setEnabled(false);
+            jbGuardar.setEnabled(false);
         }
 
     }

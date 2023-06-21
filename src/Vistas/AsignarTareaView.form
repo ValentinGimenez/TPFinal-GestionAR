@@ -100,7 +100,7 @@
               <Component id="jdcFechaInicio" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="jdcFechaCierre" min="-2" max="-2" attributes="0"/>
@@ -170,7 +170,7 @@
           <Font name="Verdana" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Seleccionar Equipo Miembro"/>
+        <Property name="text" type="java.lang.String" value="Seleccionar Miembro del Equipo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtNombre">

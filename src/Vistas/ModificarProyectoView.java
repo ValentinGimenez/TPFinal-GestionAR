@@ -308,6 +308,9 @@ public class ModificarProyectoView extends javax.swing.JInternalFrame {
         if (jcbProyecto.getSelectedItem() == null) {
             jbEliminar.setEnabled(false);
             jbModificar.setEnabled(false);
+            jdcFechaInicio.setEnabled(false);
+            jtDescripcion.setEnabled(false);
+            jtNombre.setEnabled(false);
         }
     }
 

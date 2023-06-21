@@ -198,6 +198,11 @@ public class AsignarMiembroView extends javax.swing.JInternalFrame {
             jcbEquipo.addItem(equip);
             //}
         }
+        if (jcbEquipo.getSelectedItem() == null) {
+            jtDni.setEnabled(false);
+            jbAgregar1.setEnabled(false);
+            jdcFechaIncorporacion.setEnabled(false);
+        }
 
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

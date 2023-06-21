@@ -298,6 +298,12 @@ public class ModificarMiembroView extends javax.swing.JInternalFrame {
         for (Miembro miembro : datamiembro.consultarMiembros()) {
             jcbMiembro.addItem(miembro);
         }
+        if (jcbMiembro.getSelectedItem() == null) {
+            jbModificar.setEnabled(false);
+            jtNombre.setEnabled(false);
+            jtApellido.setEnabled(false);
+            jtDni.setEnabled(false);
+        }
 
     }
     
