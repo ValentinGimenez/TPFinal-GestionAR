@@ -229,6 +229,7 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
             }
             equipo = new Equipo(((Equipo) jcbEquipo.getSelectedItem()).getProyecto(), ((Equipo) jcbEquipo.getSelectedItem()).getIdEquipo(), nombre, fecha, 1);
             dataequipo.modificarEquipo(equipo);
+            cargarEquipo();
             limpiarCampos();
             jtNombre.requestFocus();
         }
@@ -239,6 +240,10 @@ public class ModificarEquipoView extends javax.swing.JInternalFrame {
         jcbEquipo.setModel(cbox);
         for (Equipo equip : dataequipo.listarEquipos()) {
             jcbEquipo.addItem(equip);
+        }
+        if (jcbEquipo.getSelectedItem() == null) {
+            jbEliminar.setEnabled(false);
+            jbModificar.setEnabled(false);
         }
     }
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
